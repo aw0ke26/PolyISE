@@ -1,0 +1,29 @@
+{
+  "id": "html",
+  "name": "HTML / CSS",
+  "short": "<>",
+  "order": 8,
+  "bundled": true,
+  "extensions": [
+    ".html",
+    ".htm",
+    ".css"
+  ],
+  "monaco": "html",
+  "monacoByExt": {
+    ".css": "css"
+  },
+  "mode": "preview",
+  "orb": {
+    "color": "#ff8a4c",
+    "dark": "#8a2d00",
+    "text": "#2a0e00"
+  },
+  "runtime": null,
+  "run": null,
+  "repl": null,
+  "lsp": null,
+  "builtinNote": "HTML and CSS support is built into the editor",
+  "library": "library/html.json",
+  "template": "<!doctype html>\n<html>\n<body>\n  <h1>Hello from HTML</h1>\n</body>\n</html>\n"
+}

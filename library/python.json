@@ -1,0 +1,362 @@
+[
+ {
+  "name": "print()",
+  "desc": "Write to the console",
+  "cat": "Built-ins",
+  "snippet": "print()"
+ },
+ {
+  "name": "open()",
+  "desc": "Open a file to read or write",
+  "cat": "Built-ins",
+  "snippet": "with open('file.txt', encoding='utf-8') as f:\n    data = f.read()"
+ },
+ {
+  "name": "enumerate()",
+  "desc": "Loop with an index",
+  "cat": "Built-ins",
+  "snippet": "for i, item in enumerate(items):\n    print(i, item)"
+ },
+ {
+  "name": "subprocess.run()",
+  "desc": "Run an external command",
+  "cat": "System",
+  "snippet": "import subprocess\nresult = subprocess.run(['cmd', '/c', 'dir'], capture_output=True, text=True)"
+ },
+ {
+  "name": "os.environ",
+  "desc": "Read environment variables",
+  "cat": "System",
+  "snippet": "import os\nvalue = os.environ.get('NAME')"
+ },
+ {
+  "name": "ipaddress.ip_network()",
+  "desc": "Parse a subnet",
+  "cat": "System",
+  "snippet": "from ipaddress import ip_network\nnet = ip_network('10.0.0.0/24')"
+ },
+ {
+  "name": "pathlib.Path()",
+  "desc": "Work with file paths",
+  "cat": "Files",
+  "snippet": "from pathlib import Path\np = Path('.')"
+ },
+ {
+  "name": "csv.DictReader",
+  "desc": "Read a CSV file into dicts",
+  "cat": "Files",
+  "snippet": "import csv\nwith open('in.csv', newline='') as f:\n    rows = list(csv.DictReader(f))"
+ },
+ {
+  "name": "json.loads()",
+  "desc": "Parse a JSON string",
+  "cat": "Text",
+  "snippet": "import json\ndata = json.loads(text)"
+ },
+ {
+  "name": "re.findall()",
+  "desc": "Find all regex matches",
+  "cat": "Text",
+  "snippet": "import re\nmatches = re.findall(r'pattern', text)"
+ },
+ {
+  "name": "f-string",
+  "desc": "Format text with variables",
+  "cat": "Text",
+  "snippet": "f\"{name}: {value}\""
+ },
+ {
+  "name": "def",
+  "desc": "Define a function",
+  "cat": "Flow",
+  "snippet": "def name(arg):\n    return arg"
+ },
+ {
+  "name": "try / except",
+  "desc": "Handle errors",
+  "cat": "Flow",
+  "snippet": "try:\n    pass\nexcept Exception as e:\n    print(e)"
+ },
+ {
+  "name": "input()",
+  "desc": "Read a line from the user",
+  "cat": "Built-ins",
+  "snippet": "name = input('Your name: ')\nprint(f'Hello, {name}')"
+ },
+ {
+  "name": "len() / range()",
+  "desc": "Length and number ranges",
+  "cat": "Built-ins",
+  "snippet": "items = ['a', 'b', 'c']\nfor i in range(len(items)):\n    print(i, items[i])"
+ },
+ {
+  "name": "sorted()",
+  "desc": "Sort with a key",
+  "cat": "Built-ins",
+  "snippet": "people = [{'name': 'Ann', 'age': 31}, {'name': 'Bo', 'age': 25}]\nfor p in sorted(people, key=lambda p: p['age']):\n    print(p['name'])"
+ },
+ {
+  "name": "zip()",
+  "desc": "Walk two lists together",
+  "cat": "Built-ins",
+  "snippet": "names = ['Ann', 'Bo']\nscores = [90, 82]\nfor name, score in zip(names, scores):\n    print(name, score)"
+ },
+ {
+  "name": "min() / max() / sum()",
+  "desc": "Quick stats",
+  "cat": "Built-ins",
+  "snippet": "nums = [4, 8, 15, 16, 23, 42]\nprint(min(nums), max(nums), sum(nums) / len(nums))"
+ },
+ {
+  "name": "isinstance()",
+  "desc": "Check a value's type",
+  "cat": "Built-ins",
+  "snippet": "value = 42\nif isinstance(value, int):\n    print('integer')"
+ },
+ {
+  "name": "list comprehension",
+  "desc": "Build a list in one line",
+  "cat": "Data",
+  "snippet": "squares = [n * n for n in range(10) if n % 2 == 0]\nprint(squares)"
+ },
+ {
+  "name": "dict",
+  "desc": "Key/value lookup",
+  "cat": "Data",
+  "snippet": "ages = {'Ann': 31, 'Bo': 25}\nages['Cy'] = 40\nfor name, age in ages.items():\n    print(name, age)"
+ },
+ {
+  "name": "dict.get()",
+  "desc": "Lookup with a default",
+  "cat": "Data",
+  "snippet": "config = {'debug': True}\nport = config.get('port', 8080)"
+ },
+ {
+  "name": "set",
+  "desc": "Unique items and set math",
+  "cat": "Data",
+  "snippet": "a = {1, 2, 3}\nb = {2, 3, 4}\nprint(a | b, a & b, a - b)"
+ },
+ {
+  "name": "tuple unpacking",
+  "desc": "Assign several values at once",
+  "cat": "Data",
+  "snippet": "x, y = 3, 4\nx, y = y, x\nfirst, *rest = [1, 2, 3, 4]"
+ },
+ {
+  "name": "collections.Counter",
+  "desc": "Count occurrences",
+  "cat": "Data",
+  "snippet": "from collections import Counter\nwords = 'the cat and the hat'.split()\nprint(Counter(words).most_common(2))"
+ },
+ {
+  "name": "collections.defaultdict",
+  "desc": "Group items by key",
+  "cat": "Data",
+  "snippet": "from collections import defaultdict\ngroups = defaultdict(list)\nfor name, dept in [('Ann', 'IT'), ('Bo', 'HR'), ('Cy', 'IT')]:\n    groups[dept].append(name)\nprint(dict(groups))"
+ },
+ {
+  "name": "dataclass",
+  "desc": "Simple class for data",
+  "cat": "Data",
+  "snippet": "from dataclasses import dataclass\n\n@dataclass\nclass Device:\n    name: str\n    ip: str\n    online: bool = False\n\nprint(Device('printer', '10.0.0.5'))"
+ },
+ {
+  "name": "class",
+  "desc": "Class with methods",
+  "cat": "Data",
+  "snippet": "class Counter:\n    def __init__(self, start=0):\n        self.value = start\n\n    def bump(self):\n        self.value += 1\n        return self.value\n\nc = Counter()\nprint(c.bump())"
+ },
+ {
+  "name": "str methods",
+  "desc": "strip, split, replace, upper",
+  "cat": "Text",
+  "snippet": "line = '  Hello, World  '\nprint(line.strip().lower().replace('world', 'there').split(', '))"
+ },
+ {
+  "name": "str.join()",
+  "desc": "Join a list into a string",
+  "cat": "Text",
+  "snippet": "print(', '.join(['a', 'b', 'c']))"
+ },
+ {
+  "name": "re.sub()",
+  "desc": "Regex find and replace",
+  "cat": "Text",
+  "snippet": "import re\nprint(re.sub(r'\\d+', '#', 'room 101, floor 3'))"
+ },
+ {
+  "name": "re.search() groups",
+  "desc": "Pull parts out of text",
+  "cat": "Text",
+  "snippet": "import re\nm = re.search(r'(\\w+)@([\\w.]+)', 'mail: ann@contoso.com')\nif m:\n    print(m.group(1), m.group(2))"
+ },
+ {
+  "name": "json.dumps()",
+  "desc": "Object to pretty JSON",
+  "cat": "Text",
+  "snippet": "import json\nprint(json.dumps({'name': 'Ann', 'tags': ['a', 'b']}, indent=2))"
+ },
+ {
+  "name": "format numbers",
+  "desc": "Commas, decimals, percent",
+  "cat": "Text",
+  "snippet": "n = 1234567.891\nprint(f'{n:,.2f}  {0.4231:.1%}  {42:05d}')"
+ },
+ {
+  "name": "with open() write",
+  "desc": "Write a text file",
+  "cat": "Files",
+  "snippet": "with open('out.txt', 'w', encoding='utf-8') as f:\n    f.write('first line\\n')"
+ },
+ {
+  "name": "read lines",
+  "desc": "Loop over lines in a file",
+  "cat": "Files",
+  "snippet": "with open('data.txt', encoding='utf-8') as f:\n    for line in f:\n        print(line.rstrip())"
+ },
+ {
+  "name": "json file",
+  "desc": "Load and save JSON files",
+  "cat": "Files",
+  "snippet": "import json\nwith open('settings.json', encoding='utf-8') as f:\n    data = json.load(f)\nwith open('settings.json', 'w', encoding='utf-8') as f:\n    json.dump(data, f, indent=2)"
+ },
+ {
+  "name": "csv.writer",
+  "desc": "Write a CSV file",
+  "cat": "Files",
+  "snippet": "import csv\nwith open('out.csv', 'w', newline='', encoding='utf-8') as f:\n    w = csv.writer(f)\n    w.writerow(['name', 'age'])\n    w.writerow(['Ann', 31])"
+ },
+ {
+  "name": "Path.glob()",
+  "desc": "Find files by pattern",
+  "cat": "Files",
+  "snippet": "from pathlib import Path\nfor p in Path('.').rglob('*.txt'):\n    print(p, p.stat().st_size)"
+ },
+ {
+  "name": "os.walk()",
+  "desc": "Walk a folder tree",
+  "cat": "Files",
+  "snippet": "import os\nfor root, dirs, files in os.walk('.'):\n    for name in files:\n        print(os.path.join(root, name))"
+ },
+ {
+  "name": "shutil",
+  "desc": "Copy, move, delete folders",
+  "cat": "Files",
+  "snippet": "import shutil\nshutil.copy('a.txt', 'b.txt')\nshutil.copytree('src', 'backup', dirs_exist_ok=True)"
+ },
+ {
+  "name": "zipfile",
+  "desc": "Read or create zip files",
+  "cat": "Files",
+  "snippet": "import zipfile\nwith zipfile.ZipFile('out.zip', 'w') as z:\n    z.write('report.txt')"
+ },
+ {
+  "name": "hashlib",
+  "desc": "SHA-256 of a file",
+  "cat": "Files",
+  "snippet": "import hashlib\nh = hashlib.sha256()\nwith open('file.bin', 'rb') as f:\n    for chunk in iter(lambda: f.read(65536), b''):\n        h.update(chunk)\nprint(h.hexdigest())"
+ },
+ {
+  "name": "sys.argv",
+  "desc": "Command-line arguments",
+  "cat": "System",
+  "snippet": "import sys\nprint(sys.argv[1:])"
+ },
+ {
+  "name": "argparse",
+  "desc": "Proper command-line options",
+  "cat": "System",
+  "snippet": "import argparse\nparser = argparse.ArgumentParser()\nparser.add_argument('path')\nparser.add_argument('--verbose', action='store_true')\nargs = parser.parse_args()"
+ },
+ {
+  "name": "datetime",
+  "desc": "Dates, times, differences",
+  "cat": "System",
+  "snippet": "from datetime import datetime, timedelta\nnow = datetime.now()\nprint(now.strftime('%Y-%m-%d %H:%M'), now - timedelta(days=7))"
+ },
+ {
+  "name": "time.sleep()",
+  "desc": "Pause",
+  "cat": "System",
+  "snippet": "import time\nfor i in range(3):\n    print(i)\n    time.sleep(1)"
+ },
+ {
+  "name": "random",
+  "desc": "Random numbers and choices",
+  "cat": "System",
+  "snippet": "import random\nprint(random.randint(1, 6), random.choice(['a', 'b', 'c']))"
+ },
+ {
+  "name": "logging",
+  "desc": "Log messages with levels",
+  "cat": "System",
+  "snippet": "import logging\nlogging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')\nlogging.info('started')"
+ },
+ {
+  "name": "platform",
+  "desc": "OS and machine details",
+  "cat": "System",
+  "snippet": "import platform, socket\nprint(platform.system(), platform.release(), socket.gethostname())"
+ },
+ {
+  "name": "socket port check",
+  "desc": "Is a TCP port open?",
+  "cat": "Network",
+  "snippet": "import socket\nwith socket.socket() as s:\n    s.settimeout(2)\n    print('open' if s.connect_ex(('example.com', 443)) == 0 else 'closed')"
+ },
+ {
+  "name": "urllib.request",
+  "desc": "Fetch a web page (no installs)",
+  "cat": "Network",
+  "snippet": "from urllib.request import urlopen\nwith urlopen('https://example.com', timeout=10) as r:\n    print(r.status, r.read(200))"
+ },
+ {
+  "name": "socket.gethostbyname()",
+  "desc": "DNS lookup",
+  "cat": "Network",
+  "snippet": "import socket\nprint(socket.gethostbyname('example.com'))"
+ },
+ {
+  "name": "if / elif / else",
+  "desc": "Branch on a condition",
+  "cat": "Flow",
+  "snippet": "x = 7\nif x > 10:\n    print('big')\nelif x > 5:\n    print('medium')\nelse:\n    print('small')"
+ },
+ {
+  "name": "while",
+  "desc": "Loop while true",
+  "cat": "Flow",
+  "snippet": "tries = 0\nwhile tries < 3:\n    tries += 1\n    print('try', tries)"
+ },
+ {
+  "name": "match",
+  "desc": "Pattern matching (3.10+)",
+  "cat": "Flow",
+  "snippet": "command = 'start'\nmatch command:\n    case 'start':\n        print('starting')\n    case 'stop':\n        print('stopping')\n    case _:\n        print('unknown')"
+ },
+ {
+  "name": "lambda",
+  "desc": "Small inline function",
+  "cat": "Flow",
+  "snippet": "double = lambda n: n * 2\nprint(list(map(double, [1, 2, 3])))"
+ },
+ {
+  "name": "generator",
+  "desc": "Produce values lazily",
+  "cat": "Flow",
+  "snippet": "def countdown(n):\n    while n > 0:\n        yield n\n        n -= 1\n\nfor n in countdown(3):\n    print(n)"
+ },
+ {
+  "name": "raise",
+  "desc": "Raise your own error",
+  "cat": "Flow",
+  "snippet": "def set_age(age):\n    if age < 0:\n        raise ValueError('age must be positive')\n    return age"
+ },
+ {
+  "name": "if __name__ == '__main__'",
+  "desc": "Script entry point",
+  "cat": "Flow",
+  "snippet": "def main():\n    print('running')\n\nif __name__ == '__main__':\n    main()"
+ }
+]

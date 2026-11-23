@@ -1,0 +1,290 @@
+[
+ {
+  "name": "Console.WriteLine",
+  "desc": "Print a line",
+  "cat": "Console",
+  "snippet": "Console.WriteLine(\"\");"
+ },
+ {
+  "name": "Console.ReadLine",
+  "desc": "Read a line of input",
+  "cat": "Console",
+  "snippet": "var input = Console.ReadLine();"
+ },
+ {
+  "name": "File.ReadAllLines",
+  "desc": "Read a file into lines",
+  "cat": "IO",
+  "snippet": "var lines = File.ReadAllLines(\"file.txt\");"
+ },
+ {
+  "name": "File.WriteAllText",
+  "desc": "Write text to a file",
+  "cat": "IO",
+  "snippet": "File.WriteAllText(\"file.txt\", text);"
+ },
+ {
+  "name": "Directory.GetFiles",
+  "desc": "List files in a folder",
+  "cat": "IO",
+  "snippet": "var files = Directory.GetFiles(\".\", \"*.*\");"
+ },
+ {
+  "name": "Enumerable.Where",
+  "desc": "Filter a sequence",
+  "cat": "LINQ",
+  "snippet": "var hits = items.Where(x => x.Contains(\"a\"));"
+ },
+ {
+  "name": "Enumerable.Select",
+  "desc": "Transform a sequence",
+  "cat": "LINQ",
+  "snippet": "var names = items.Select(x => x.Name);"
+ },
+ {
+  "name": "string.Join",
+  "desc": "Join values with a separator",
+  "cat": "System",
+  "snippet": "string.Join(\", \", values)"
+ },
+ {
+  "name": "List<T>",
+  "desc": "Create a list",
+  "cat": "System",
+  "snippet": "var list = new List<string>();"
+ },
+ {
+  "name": "Process.Start",
+  "desc": "Launch a program",
+  "cat": "System",
+  "snippet": "System.Diagnostics.Process.Start(\"notepad.exe\");"
+ },
+ {
+  "name": "HttpClient.GetStringAsync",
+  "desc": "Download text from a URL",
+  "cat": "System",
+  "snippet": "using var http = new HttpClient();\nvar body = await http.GetStringAsync(\"https://example.com\");"
+ },
+ {
+  "name": "try / catch",
+  "desc": "Handle errors",
+  "cat": "Flow",
+  "snippet": "try\n{\n}\ncatch (Exception ex)\n{\n    Console.WriteLine(ex.Message);\n}"
+ },
+ {
+  "name": "string interpolation",
+  "desc": "Insert values into text",
+  "cat": "Console",
+  "snippet": "var name = \"World\";\nConsole.WriteLine($\"Hello, {name}! Today is {DateTime.Now:yyyy-MM-dd}\");"
+ },
+ {
+  "name": "Console.ForegroundColor",
+  "desc": "Colored output",
+  "cat": "Console",
+  "snippet": "Console.ForegroundColor = ConsoleColor.Green;\nConsole.WriteLine(\"OK\");\nConsole.ResetColor();"
+ },
+ {
+  "name": "args",
+  "desc": "Command-line arguments",
+  "cat": "Console",
+  "snippet": "foreach (var arg in args)\n    Console.WriteLine(arg);"
+ },
+ {
+  "name": "int.TryParse",
+  "desc": "Safely read a number",
+  "cat": "Console",
+  "snippet": "Console.Write(\"Number: \");\nif (int.TryParse(Console.ReadLine(), out var n))\n    Console.WriteLine(n * 2);\nelse\n    Console.WriteLine(\"Not a number\");"
+ },
+ {
+  "name": "class",
+  "desc": "Class with a property and method",
+  "cat": "Types",
+  "snippet": "var c = new Counter();\nc.Bump();\nConsole.WriteLine(c.Value);\n\nclass Counter\n{\n    public int Value { get; private set; }\n    public void Bump() => Value++;\n}"
+ },
+ {
+  "name": "record",
+  "desc": "Immutable data type",
+  "cat": "Types",
+  "snippet": "var d = new Device(\"printer\", \"10.0.0.5\");\nConsole.WriteLine(d);\n\nrecord Device(string Name, string Ip);"
+ },
+ {
+  "name": "enum",
+  "desc": "Named constants",
+  "cat": "Types",
+  "snippet": "var s = Status.Running;\nConsole.WriteLine(s);\n\nenum Status { Stopped, Running, Failed }"
+ },
+ {
+  "name": "interface",
+  "desc": "Contract for classes",
+  "cat": "Types",
+  "snippet": "IShape s = new Square(3);\nConsole.WriteLine(s.Area());\n\ninterface IShape { double Area(); }\nclass Square(double side) : IShape { public double Area() => side * side; }"
+ },
+ {
+  "name": "switch expression",
+  "desc": "Pick a value by pattern",
+  "cat": "Types",
+  "snippet": "int score = 82;\nstring grade = score switch\n{\n    >= 90 => \"A\",\n    >= 80 => \"B\",\n    _ => \"C\"\n};\nConsole.WriteLine(grade);"
+ },
+ {
+  "name": "nullable / ??",
+  "desc": "Handle missing values",
+  "cat": "Types",
+  "snippet": "string? name = null;\nConsole.WriteLine(name ?? \"(none)\");\nConsole.WriteLine(name?.Length ?? 0);"
+ },
+ {
+  "name": "tuple",
+  "desc": "Return several values",
+  "cat": "Types",
+  "snippet": "var (min, max) = MinMax(new[] { 3, 9, 1 });\nConsole.WriteLine($\"{min} {max}\");\n\nstatic (int, int) MinMax(int[] xs) => (xs.Min(), xs.Max());"
+ },
+ {
+  "name": "Dictionary<K,V>",
+  "desc": "Key/value lookup",
+  "cat": "Collections",
+  "snippet": "var ages = new Dictionary<string, int> { [\"Ann\"] = 31, [\"Bo\"] = 25 };\nif (ages.TryGetValue(\"Ann\", out var age))\n    Console.WriteLine(age);"
+ },
+ {
+  "name": "HashSet<T>",
+  "desc": "Unique items",
+  "cat": "Collections",
+  "snippet": "var seen = new HashSet<string>();\nforeach (var w in \"a b a c\".Split(' '))\n    if (!seen.Add(w)) Console.WriteLine($\"duplicate: {w}\");"
+ },
+ {
+  "name": "array",
+  "desc": "Fixed-size array",
+  "cat": "Collections",
+  "snippet": "int[] nums = { 4, 8, 15, 16 };\nArray.Sort(nums);\nConsole.WriteLine(string.Join(\", \", nums));"
+ },
+ {
+  "name": "OrderBy",
+  "desc": "Sort with LINQ",
+  "cat": "LINQ",
+  "snippet": "var names = new[] { \"Cy\", \"Ann\", \"Bo\" };\nforeach (var n in names.OrderBy(n => n))\n    Console.WriteLine(n);"
+ },
+ {
+  "name": "GroupBy",
+  "desc": "Group and count",
+  "cat": "LINQ",
+  "snippet": "var words = \"the cat and the hat\".Split(' ');\nforeach (var g in words.GroupBy(w => w))\n    Console.WriteLine($\"{g.Key}: {g.Count()}\");"
+ },
+ {
+  "name": "First / Any / Count",
+  "desc": "Quick checks",
+  "cat": "LINQ",
+  "snippet": "var nums = new[] { 3, 8, 12 };\nConsole.WriteLine(nums.Any(n => n > 10));\nConsole.WriteLine(nums.First(n => n > 5));\nConsole.WriteLine(nums.Count(n => n % 2 == 0));"
+ },
+ {
+  "name": "Sum / Average / Max",
+  "desc": "Aggregate numbers",
+  "cat": "LINQ",
+  "snippet": "var nums = new[] { 4, 8, 15 };\nConsole.WriteLine($\"{nums.Sum()} {nums.Average():F1} {nums.Max()}\");"
+ },
+ {
+  "name": "File.Exists / Directory.Exists",
+  "desc": "Check paths",
+  "cat": "IO",
+  "snippet": "if (File.Exists(\"data.txt\"))\n    Console.WriteLine(\"found\");"
+ },
+ {
+  "name": "File.AppendAllText",
+  "desc": "Append to a file",
+  "cat": "IO",
+  "snippet": "File.AppendAllText(\"log.txt\", $\"{DateTime.Now:u} started{Environment.NewLine}\");"
+ },
+ {
+  "name": "StreamReader",
+  "desc": "Read a big file line by line",
+  "cat": "IO",
+  "snippet": "using var reader = new StreamReader(\"data.txt\");\nstring? line;\nwhile ((line = reader.ReadLine()) != null)\n    Console.WriteLine(line);"
+ },
+ {
+  "name": "Path.Combine",
+  "desc": "Build file paths",
+  "cat": "IO",
+  "snippet": "var file = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), \"report.txt\");\nConsole.WriteLine(Path.GetFileName(file));"
+ },
+ {
+  "name": "JsonSerializer",
+  "desc": "Read and write JSON",
+  "cat": "IO",
+  "snippet": "using System.Text.Json;\nvar json = JsonSerializer.Serialize(new { Name = \"Ann\", Age = 31 });\nConsole.WriteLine(json);\nvar doc = JsonDocument.Parse(json);\nConsole.WriteLine(doc.RootElement.GetProperty(\"Name\"));"
+ },
+ {
+  "name": "DateTime",
+  "desc": "Dates and formatting",
+  "cat": "System",
+  "snippet": "var now = DateTime.Now;\nConsole.WriteLine(now.ToString(\"yyyy-MM-dd HH:mm\"));\nConsole.WriteLine(now.AddDays(-7).DayOfWeek);"
+ },
+ {
+  "name": "Stopwatch",
+  "desc": "Time a block of code",
+  "cat": "System",
+  "snippet": "using System.Diagnostics;\nvar sw = Stopwatch.StartNew();\nThread.Sleep(250);\nConsole.WriteLine($\"{sw.ElapsedMilliseconds} ms\");"
+ },
+ {
+  "name": "Environment",
+  "desc": "Machine and user info",
+  "cat": "System",
+  "snippet": "Console.WriteLine(Environment.MachineName);\nConsole.WriteLine(Environment.UserName);\nConsole.WriteLine(Environment.OSVersion);"
+ },
+ {
+  "name": "Regex",
+  "desc": "Match and replace text",
+  "cat": "System",
+  "snippet": "using System.Text.RegularExpressions;\nvar m = Regex.Match(\"ann@contoso.com\", @\"^(.+)@(.+)$\");\nif (m.Success) Console.WriteLine(m.Groups[2].Value);"
+ },
+ {
+  "name": "StringBuilder",
+  "desc": "Build text efficiently",
+  "cat": "System",
+  "snippet": "using System.Text;\nvar sb = new StringBuilder();\nfor (int i = 0; i < 3; i++) sb.AppendLine($\"line {i}\");\nConsole.Write(sb.ToString());"
+ },
+ {
+  "name": "Random",
+  "desc": "Random numbers",
+  "cat": "System",
+  "snippet": "Console.WriteLine(Random.Shared.Next(1, 7));"
+ },
+ {
+  "name": "if / else",
+  "desc": "Branch on a condition",
+  "cat": "Flow",
+  "snippet": "int x = 7;\nif (x > 10) Console.WriteLine(\"big\");\nelse if (x > 5) Console.WriteLine(\"medium\");\nelse Console.WriteLine(\"small\");"
+ },
+ {
+  "name": "foreach",
+  "desc": "Loop over items",
+  "cat": "Flow",
+  "snippet": "foreach (var name in new[] { \"Ann\", \"Bo\" })\n    Console.WriteLine(name);"
+ },
+ {
+  "name": "for",
+  "desc": "Counted loop",
+  "cat": "Flow",
+  "snippet": "for (int i = 1; i <= 5; i++)\n    Console.WriteLine($\"Pass {i}\");"
+ },
+ {
+  "name": "while",
+  "desc": "Loop while true",
+  "cat": "Flow",
+  "snippet": "int tries = 0;\nwhile (tries < 3)\n    Console.WriteLine($\"try {++tries}\");"
+ },
+ {
+  "name": "async / await",
+  "desc": "Run work asynchronously",
+  "cat": "Flow",
+  "snippet": "await Task.Delay(500);\nvar results = await Task.WhenAll(Work(1), Work(2));\nConsole.WriteLine(string.Join(\", \", results));\n\nstatic async Task<int> Work(int n) { await Task.Delay(100); return n * 10; }"
+ },
+ {
+  "name": "local function",
+  "desc": "Function inside a script",
+  "cat": "Flow",
+  "snippet": "Console.WriteLine(Square(5));\n\nstatic int Square(int n) => n * n;"
+ },
+ {
+  "name": "throw",
+  "desc": "Raise an exception",
+  "cat": "Flow",
+  "snippet": "static void SetAge(int age)\n{\n    if (age < 0) throw new ArgumentOutOfRangeException(nameof(age));\n}"
+ }
+]

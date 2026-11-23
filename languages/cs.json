@@ -1,0 +1,40 @@
+{
+  "id": "cs",
+  "name": "C#",
+  "short": "C#",
+  "order": 3,
+  "bundled": false,
+  "extensions": [
+    ".cs"
+  ],
+  "monaco": "csharp",
+  "orb": {
+    "color": "#9a52e0",
+    "dark": "#3d1270",
+    "text": "#ffffff"
+  },
+  "runtime": {
+    "label": ".NET SDK 10+",
+    "local": [
+      "runtimes/dotnet/dotnet.exe"
+    ],
+    "probe": [
+      "dotnet"
+    ],
+    "catalog": "dotnet",
+    "verify": [
+      "--version"
+    ]
+  },
+  "run": [
+    "{runtime} run \"{file}\""
+  ],
+  "repl": null,
+  "lsp": {
+    "name": "OmniSharp",
+    "catalog": "omnisharp",
+    "languageId": "csharp"
+  },
+  "library": "library/csharp.json",
+  "template": "Console.WriteLine(\"Hello from C#\");\n"
+}

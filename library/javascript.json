@@ -1,0 +1,350 @@
+[
+ {
+  "name": "console.log",
+  "desc": "Print to the console",
+  "cat": "Core",
+  "snippet": "console.log();"
+ },
+ {
+  "name": "JSON.parse",
+  "desc": "Parse a JSON string",
+  "cat": "Core",
+  "snippet": "const data = JSON.parse(text);"
+ },
+ {
+  "name": "template literal",
+  "desc": "Format text with variables",
+  "cat": "Core",
+  "snippet": "`${name}: ${value}`"
+ },
+ {
+  "name": "Array.map",
+  "desc": "Transform every item",
+  "cat": "Arrays",
+  "snippet": "const out = items.map((x) => x);"
+ },
+ {
+  "name": "Array.filter",
+  "desc": "Keep items that match",
+  "cat": "Arrays",
+  "snippet": "const hits = items.filter((x) => x);"
+ },
+ {
+  "name": "Array.reduce",
+  "desc": "Combine items into one value",
+  "cat": "Arrays",
+  "snippet": "const total = items.reduce((sum, x) => sum + x, 0);"
+ },
+ {
+  "name": "fetch()",
+  "desc": "Make an HTTP request",
+  "cat": "Async",
+  "snippet": "const res = await fetch('https://example.com');\nconst body = await res.json();"
+ },
+ {
+  "name": "Promise.all",
+  "desc": "Await many promises at once",
+  "cat": "Async",
+  "snippet": "const results = await Promise.all(tasks);"
+ },
+ {
+  "name": "setTimeout",
+  "desc": "Run code after a delay",
+  "cat": "Async",
+  "snippet": "setTimeout(() => {\n}, 1000);"
+ },
+ {
+  "name": "fs.readFileSync",
+  "desc": "Read a file (Node)",
+  "cat": "Node",
+  "snippet": "const fs = require('fs');\nconst text = fs.readFileSync('file.txt', 'utf8');"
+ },
+ {
+  "name": "document.querySelector",
+  "desc": "Find a page element",
+  "cat": "DOM",
+  "snippet": "document.querySelector('#id')"
+ },
+ {
+  "name": "try / catch",
+  "desc": "Handle errors",
+  "cat": "Flow",
+  "snippet": "try {\n} catch (err) {\n  console.error(err);\n}"
+ },
+ {
+  "name": "const / let",
+  "desc": "Declare variables",
+  "cat": "Core",
+  "snippet": "const name = 'World';\nlet count = 0;\ncount += 1;"
+ },
+ {
+  "name": "object",
+  "desc": "Key/value object",
+  "cat": "Core",
+  "snippet": "const user = { name: 'Ann', age: 31 };\nuser.role = 'admin';\nconsole.log(user.name, Object.keys(user));"
+ },
+ {
+  "name": "destructuring",
+  "desc": "Pull values out of objects/arrays",
+  "cat": "Core",
+  "snippet": "const { name, age = 0 } = { name: 'Ann' };\nconst [first, ...rest] = [1, 2, 3];\nconsole.log(name, age, first, rest);"
+ },
+ {
+  "name": "spread",
+  "desc": "Copy and merge",
+  "cat": "Core",
+  "snippet": "const a = { x: 1 };\nconst b = { ...a, y: 2 };\nconst all = [...[1, 2], ...[3]];\nconsole.log(b, all);"
+ },
+ {
+  "name": "arrow function",
+  "desc": "Short function syntax",
+  "cat": "Core",
+  "snippet": "const add = (a, b) => a + b;\nconsole.log(add(2, 3));"
+ },
+ {
+  "name": "JSON.stringify",
+  "desc": "Object to JSON text",
+  "cat": "Core",
+  "snippet": "console.log(JSON.stringify({ name: 'Ann', tags: ['a', 'b'] }, null, 2));"
+ },
+ {
+  "name": "optional chaining",
+  "desc": "Safe property access",
+  "cat": "Core",
+  "snippet": "const cfg = { server: null };\nconsole.log(cfg.server?.port ?? 8080);"
+ },
+ {
+  "name": "class",
+  "desc": "Class with a method",
+  "cat": "Core",
+  "snippet": "class Counter {\n  #value = 0;\n  bump() { return ++this.#value; }\n}\nconst c = new Counter();\nconsole.log(c.bump());"
+ },
+ {
+  "name": "Date",
+  "desc": "Current date and formatting",
+  "cat": "Core",
+  "snippet": "const now = new Date();\nconsole.log(now.toISOString(), now.toLocaleDateString());"
+ },
+ {
+  "name": "Math",
+  "desc": "Rounding and random",
+  "cat": "Core",
+  "snippet": "console.log(Math.round(4.6), Math.max(3, 9), Math.floor(Math.random() * 6) + 1);"
+ },
+ {
+  "name": "regex",
+  "desc": "Match and replace",
+  "cat": "Core",
+  "snippet": "const m = 'ann@contoso.com'.match(/^(.+)@(.+)$/);\nconsole.log(m[2], 'a1b22'.replace(/\\d+/g, '#'));"
+ },
+ {
+  "name": "string methods",
+  "desc": "trim, split, includes, padStart",
+  "cat": "Core",
+  "snippet": "const s = '  Hello, World  ';\nconsole.log(s.trim().split(', '), s.includes('World'), '7'.padStart(3, '0'));"
+ },
+ {
+  "name": "Array.find",
+  "desc": "First matching item",
+  "cat": "Arrays",
+  "snippet": "const users = [{ id: 1, name: 'Ann' }, { id: 2, name: 'Bo' }];\nconsole.log(users.find((u) => u.id === 2));"
+ },
+ {
+  "name": "Array.some / every",
+  "desc": "Any or all match",
+  "cat": "Arrays",
+  "snippet": "const nums = [3, 8, 12];\nconsole.log(nums.some((n) => n > 10), nums.every((n) => n > 0));"
+ },
+ {
+  "name": "Array.sort",
+  "desc": "Sort numbers or by key",
+  "cat": "Arrays",
+  "snippet": "const nums = [10, 2, 33];\nnums.sort((a, b) => a - b);\nconst people = [{ n: 'Bo' }, { n: 'Ann' }].sort((a, b) => a.n.localeCompare(b.n));\nconsole.log(nums, people);"
+ },
+ {
+  "name": "Array.includes / indexOf",
+  "desc": "Is it in the list?",
+  "cat": "Arrays",
+  "snippet": "const roles = ['admin', 'staff'];\nconsole.log(roles.includes('admin'), roles.indexOf('staff'));"
+ },
+ {
+  "name": "Array.forEach",
+  "desc": "Do something for each item",
+  "cat": "Arrays",
+  "snippet": "['a', 'b'].forEach((item, i) => console.log(i, item));"
+ },
+ {
+  "name": "Array.from",
+  "desc": "Make arrays from ranges/iterables",
+  "cat": "Arrays",
+  "snippet": "const range = Array.from({ length: 5 }, (_, i) => i + 1);\nconsole.log(range);"
+ },
+ {
+  "name": "Set",
+  "desc": "Unique values",
+  "cat": "Arrays",
+  "snippet": "const unique = [...new Set([1, 2, 2, 3])];\nconsole.log(unique);"
+ },
+ {
+  "name": "Map",
+  "desc": "Key/value map with any keys",
+  "cat": "Arrays",
+  "snippet": "const counts = new Map();\nfor (const w of 'the cat the'.split(' ')) counts.set(w, (counts.get(w) ?? 0) + 1);\nconsole.log([...counts]);"
+ },
+ {
+  "name": "Object.entries",
+  "desc": "Loop over an object",
+  "cat": "Arrays",
+  "snippet": "const ages = { Ann: 31, Bo: 25 };\nfor (const [name, age] of Object.entries(ages)) console.log(name, age);"
+ },
+ {
+  "name": "async / await",
+  "desc": "Wait for promises",
+  "cat": "Async",
+  "snippet": "const sleep = (ms) => new Promise((r) => setTimeout(r, ms));\n(async () => {\n  await sleep(500);\n  console.log('done');\n})();"
+ },
+ {
+  "name": "fetch JSON",
+  "desc": "GET and parse JSON",
+  "cat": "Async",
+  "snippet": "const res = await fetch('https://api.github.com/repos/nodejs/node');\nif (!res.ok) throw new Error(res.status);\nconst data = await res.json();\nconsole.log(data.stargazers_count);"
+ },
+ {
+  "name": "fetch POST",
+  "desc": "Send JSON to an API",
+  "cat": "Async",
+  "snippet": "const res = await fetch('https://httpbin.org/post', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify({ hello: 'world' })\n});\nconsole.log(await res.json());"
+ },
+ {
+  "name": "setInterval",
+  "desc": "Repeat on a timer",
+  "cat": "Async",
+  "snippet": "let n = 0;\nconst id = setInterval(() => {\n  console.log('tick', ++n);\n  if (n === 3) clearInterval(id);\n}, 1000);"
+ },
+ {
+  "name": "Promise.allSettled",
+  "desc": "Wait for all, keep failures",
+  "cat": "Async",
+  "snippet": "const results = await Promise.allSettled([Promise.resolve(1), Promise.reject(new Error('x'))]);\nconsole.log(results.map((r) => r.status));"
+ },
+ {
+  "name": "fs.writeFileSync",
+  "desc": "Write a file",
+  "cat": "Node",
+  "snippet": "const fs = require('fs');\nfs.writeFileSync('out.txt', 'hello\\n');\nfs.appendFileSync('out.txt', 'more\\n');"
+ },
+ {
+  "name": "fs.readdirSync",
+  "desc": "List a folder",
+  "cat": "Node",
+  "snippet": "const fs = require('fs');\nfor (const name of fs.readdirSync('.')) console.log(name);"
+ },
+ {
+  "name": "fs.existsSync / mkdirSync",
+  "desc": "Check and create folders",
+  "cat": "Node",
+  "snippet": "const fs = require('fs');\nif (!fs.existsSync('logs')) fs.mkdirSync('logs', { recursive: true });"
+ },
+ {
+  "name": "path.join",
+  "desc": "Build file paths",
+  "cat": "Node",
+  "snippet": "const path = require('path');\nconsole.log(path.join(__dirname, 'data', 'file.txt'), path.extname('a.json'));"
+ },
+ {
+  "name": "process.argv",
+  "desc": "Command-line arguments",
+  "cat": "Node",
+  "snippet": "const args = process.argv.slice(2);\nconsole.log(args);"
+ },
+ {
+  "name": "process.env",
+  "desc": "Environment variables",
+  "cat": "Node",
+  "snippet": "console.log(process.env.USERNAME || process.env.USER, process.platform);"
+ },
+ {
+  "name": "os module",
+  "desc": "Machine details",
+  "cat": "Node",
+  "snippet": "const os = require('os');\nconsole.log(os.hostname(), os.cpus().length, Math.round(os.totalmem() / 1e9) + ' GB');"
+ },
+ {
+  "name": "child_process",
+  "desc": "Run a command",
+  "cat": "Node",
+  "snippet": "const { execSync } = require('child_process');\nconsole.log(execSync('hostname').toString().trim());"
+ },
+ {
+  "name": "readline",
+  "desc": "Ask the user a question",
+  "cat": "Node",
+  "snippet": "const readline = require('readline/promises');\nconst rl = readline.createInterface({ input: process.stdin, output: process.stdout });\nconst name = await rl.question('Name? ');\nconsole.log(`Hi ${name}`);\nrl.close();"
+ },
+ {
+  "name": "crypto hash",
+  "desc": "SHA-256 of text",
+  "cat": "Node",
+  "snippet": "const crypto = require('crypto');\nconsole.log(crypto.createHash('sha256').update('hello').digest('hex'));"
+ },
+ {
+  "name": "http server",
+  "desc": "Tiny web server",
+  "cat": "Node",
+  "snippet": "const http = require('http');\nhttp.createServer((req, res) => {\n  res.end('Hello from Node');\n}).listen(3000, () => console.log('http://localhost:3000'));"
+ },
+ {
+  "name": "addEventListener",
+  "desc": "React to clicks",
+  "cat": "DOM",
+  "snippet": "document.querySelector('#btn').addEventListener('click', () => {\n  console.log('clicked');\n});"
+ },
+ {
+  "name": "createElement",
+  "desc": "Add elements to the page",
+  "cat": "DOM",
+  "snippet": "const li = document.createElement('li');\nli.textContent = 'New item';\ndocument.querySelector('ul').append(li);"
+ },
+ {
+  "name": "classList",
+  "desc": "Toggle CSS classes",
+  "cat": "DOM",
+  "snippet": "document.body.classList.toggle('dark');"
+ },
+ {
+  "name": "localStorage",
+  "desc": "Save small data in the browser",
+  "cat": "DOM",
+  "snippet": "localStorage.setItem('theme', 'dark');\nconsole.log(localStorage.getItem('theme'));"
+ },
+ {
+  "name": "if / else",
+  "desc": "Branch on a condition",
+  "cat": "Flow",
+  "snippet": "const x = 7;\nif (x > 10) console.log('big');\nelse if (x > 5) console.log('medium');\nelse console.log('small');"
+ },
+ {
+  "name": "for...of",
+  "desc": "Loop over values",
+  "cat": "Flow",
+  "snippet": "for (const item of ['a', 'b', 'c']) console.log(item);"
+ },
+ {
+  "name": "for",
+  "desc": "Counted loop",
+  "cat": "Flow",
+  "snippet": "for (let i = 1; i <= 5; i++) console.log(`Pass ${i}`);"
+ },
+ {
+  "name": "switch",
+  "desc": "Match one value against many",
+  "cat": "Flow",
+  "snippet": "const status = 'running';\nswitch (status) {\n  case 'running': console.log('ok'); break;\n  case 'stopped': console.log('start it'); break;\n  default: console.log('unknown');\n}"
+ },
+ {
+  "name": "throw",
+  "desc": "Raise an error",
+  "cat": "Flow",
+  "snippet": "function setAge(age) {\n  if (age < 0) throw new RangeError('age must be positive');\n  return age;\n}"
+ }
+]

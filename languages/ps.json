@@ -1,0 +1,43 @@
+{
+  "id": "ps",
+  "name": "PowerShell",
+  "short": "PS",
+  "order": 1,
+  "bundled": true,
+  "extensions": [
+    ".ps1",
+    ".psm1",
+    ".psd1"
+  ],
+  "monaco": "powershell",
+  "orb": {
+    "color": "#2f7fe0",
+    "dark": "#0b2f6b",
+    "text": "#ffffff"
+  },
+  "runtime": {
+    "label": "PowerShell",
+    "local": [
+      "runtimes/pwsh/pwsh.exe"
+    ],
+    "probe": [
+      "pwsh",
+      "powershell"
+    ],
+    "catalog": "pwsh"
+  },
+  "run": [
+    "{runtime} -NoLogo -NoProfile -ExecutionPolicy Bypass -File \"{file}\""
+  ],
+  "repl": {
+    "cmd": "{runtime} -NoLogo -NoProfile -ExecutionPolicy Bypass -Command -",
+    "load": ". '{file}'"
+  },
+  "lsp": {
+    "name": "PowerShell Editor Services",
+    "catalog": "pses",
+    "languageId": "powershell"
+  },
+  "library": "library/powershell.json",
+  "template": "Write-Host \"Hello from PowerShell\"\n"
+}

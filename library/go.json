@@ -1,0 +1,260 @@
+[
+ {
+  "name": "fmt.Println",
+  "desc": "Print a line",
+  "cat": "fmt",
+  "snippet": "fmt.Println()"
+ },
+ {
+  "name": "fmt.Sprintf",
+  "desc": "Format a string",
+  "cat": "fmt",
+  "snippet": "s := fmt.Sprintf(\"%s: %d\", name, n)"
+ },
+ {
+  "name": "net.DialTimeout",
+  "desc": "Open a connection with a timeout",
+  "cat": "net",
+  "snippet": "conn, err := net.DialTimeout(\"tcp\", \"host:443\", 2*time.Second)"
+ },
+ {
+  "name": "net.LookupHost",
+  "desc": "Resolve a hostname",
+  "cat": "net",
+  "snippet": "addrs, err := net.LookupHost(\"example.com\")"
+ },
+ {
+  "name": "http.Get",
+  "desc": "Make an HTTP GET request",
+  "cat": "net",
+  "snippet": "resp, err := http.Get(\"https://example.com\")"
+ },
+ {
+  "name": "os.ReadFile",
+  "desc": "Read a whole file",
+  "cat": "os",
+  "snippet": "data, err := os.ReadFile(\"file.txt\")"
+ },
+ {
+  "name": "os.Args",
+  "desc": "Command-line arguments",
+  "cat": "os",
+  "snippet": "args := os.Args[1:]"
+ },
+ {
+  "name": "strings.Split",
+  "desc": "Split a string",
+  "cat": "strings",
+  "snippet": "parts := strings.Split(s, \",\")"
+ },
+ {
+  "name": "strings.Contains",
+  "desc": "Check for a substring",
+  "cat": "strings",
+  "snippet": "if strings.Contains(s, \"x\") {\n}"
+ },
+ {
+  "name": "if err != nil",
+  "desc": "Check an error",
+  "cat": "flow",
+  "snippet": "if err != nil {\n    log.Fatal(err)\n}"
+ },
+ {
+  "name": "for range",
+  "desc": "Loop over a slice or map",
+  "cat": "flow",
+  "snippet": "for i, v := range items {\n    fmt.Println(i, v)\n}"
+ },
+ {
+  "name": "fmt.Printf",
+  "desc": "Formatted output",
+  "cat": "fmt",
+  "snippet": "fmt.Printf(\"%-10s %5d %.2f\\n\", \"name\", 42, 3.14159)"
+ },
+ {
+  "name": "fmt.Scanln",
+  "desc": "Read input",
+  "cat": "fmt",
+  "snippet": "var name string\nfmt.Print(\"Name: \")\nfmt.Scanln(&name)\nfmt.Println(\"Hello,\", name)"
+ },
+ {
+  "name": "errors / fmt.Errorf",
+  "desc": "Create and wrap errors",
+  "cat": "flow",
+  "snippet": "err := fmt.Errorf(\"open config: %w\", os.ErrNotExist)\nif errors.Is(err, os.ErrNotExist) {\n\tfmt.Println(\"missing:\", err)\n}"
+ },
+ {
+  "name": "func (multiple returns)",
+  "desc": "Function returning a value and error",
+  "cat": "flow",
+  "snippet": "func divide(a, b float64) (float64, error) {\n\tif b == 0 {\n\t\treturn 0, errors.New(\"divide by zero\")\n\t}\n\treturn a / b, nil\n}"
+ },
+ {
+  "name": "switch",
+  "desc": "Match one value against many",
+  "cat": "flow",
+  "snippet": "switch status := \"running\"; status {\ncase \"running\":\n\tfmt.Println(\"ok\")\ncase \"stopped\":\n\tfmt.Println(\"start it\")\ndefault:\n\tfmt.Println(\"unknown\")\n}"
+ },
+ {
+  "name": "for (counted)",
+  "desc": "Classic loop",
+  "cat": "flow",
+  "snippet": "for i := 1; i <= 5; i++ {\n\tfmt.Println(\"pass\", i)\n}"
+ },
+ {
+  "name": "defer",
+  "desc": "Run cleanup at the end",
+  "cat": "flow",
+  "snippet": "f, err := os.Open(\"data.txt\")\nif err != nil {\n\tlog.Fatal(err)\n}\ndefer f.Close()"
+ },
+ {
+  "name": "struct",
+  "desc": "Custom type with fields",
+  "cat": "types",
+  "snippet": "type Device struct {\n\tName   string\n\tIP     string\n\tOnline bool\n}\n\nd := Device{Name: \"printer\", IP: \"10.0.0.5\"}\nfmt.Printf(\"%+v\\n\", d)"
+ },
+ {
+  "name": "method",
+  "desc": "Function attached to a type",
+  "cat": "types",
+  "snippet": "type Counter struct{ n int }\n\nfunc (c *Counter) Bump() int {\n\tc.n++\n\treturn c.n\n}"
+ },
+ {
+  "name": "interface",
+  "desc": "Behavior shared by types",
+  "cat": "types",
+  "snippet": "type Shape interface {\n\tArea() float64\n}\n\ntype Square struct{ Side float64 }\n\nfunc (s Square) Area() float64 { return s.Side * s.Side }"
+ },
+ {
+  "name": "slice",
+  "desc": "Growable list",
+  "cat": "types",
+  "snippet": "nums := []int{4, 8, 15}\nnums = append(nums, 16)\nfmt.Println(len(nums), nums[1:3])"
+ },
+ {
+  "name": "map",
+  "desc": "Key/value lookup",
+  "cat": "types",
+  "snippet": "ages := map[string]int{\"Ann\": 31}\nages[\"Bo\"] = 25\nif age, ok := ages[\"Ann\"]; ok {\n\tfmt.Println(age)\n}"
+ },
+ {
+  "name": "sort.Slice",
+  "desc": "Sort by a key",
+  "cat": "types",
+  "snippet": "people := []struct{ Name string; Age int }{{\"Bo\", 25}, {\"Ann\", 31}}\nsort.Slice(people, func(i, j int) bool { return people[i].Age < people[j].Age })\nfmt.Println(people)"
+ },
+ {
+  "name": "strconv",
+  "desc": "Convert text and numbers",
+  "cat": "strings",
+  "snippet": "n, err := strconv.Atoi(\"42\")\nif err == nil {\n\tfmt.Println(n*2, strconv.Itoa(n))\n}"
+ },
+ {
+  "name": "strings.Join / Fields",
+  "desc": "Join or split on spaces",
+  "cat": "strings",
+  "snippet": "words := strings.Fields(\"  the cat  sat \")\nfmt.Println(strings.Join(words, \",\"))"
+ },
+ {
+  "name": "strings.ReplaceAll / ToUpper",
+  "desc": "Change text",
+  "cat": "strings",
+  "snippet": "fmt.Println(strings.ToUpper(strings.ReplaceAll(\"a-b-c\", \"-\", \" \")))"
+ },
+ {
+  "name": "strings.Builder",
+  "desc": "Build text efficiently",
+  "cat": "strings",
+  "snippet": "var sb strings.Builder\nfor i := 0; i < 3; i++ {\n\tfmt.Fprintf(&sb, \"line %d\\n\", i)\n}\nfmt.Print(sb.String())"
+ },
+ {
+  "name": "regexp",
+  "desc": "Match and extract",
+  "cat": "strings",
+  "snippet": "re := regexp.MustCompile(`^(.+)@(.+)$`)\nm := re.FindStringSubmatch(\"ann@contoso.com\")\nfmt.Println(m[2])"
+ },
+ {
+  "name": "os.WriteFile",
+  "desc": "Write a file",
+  "cat": "os",
+  "snippet": "if err := os.WriteFile(\"out.txt\", []byte(\"hello\\n\"), 0644); err != nil {\n\tlog.Fatal(err)\n}"
+ },
+ {
+  "name": "bufio.Scanner",
+  "desc": "Read a file line by line",
+  "cat": "os",
+  "snippet": "f, err := os.Open(\"data.txt\")\nif err != nil {\n\tlog.Fatal(err)\n}\ndefer f.Close()\nsc := bufio.NewScanner(f)\nfor sc.Scan() {\n\tfmt.Println(sc.Text())\n}"
+ },
+ {
+  "name": "filepath.WalkDir",
+  "desc": "Walk a folder tree",
+  "cat": "os",
+  "snippet": "filepath.WalkDir(\".\", func(p string, d fs.DirEntry, err error) error {\n\tif err == nil && !d.IsDir() {\n\t\tfmt.Println(p)\n\t}\n\treturn nil\n})"
+ },
+ {
+  "name": "os.Getenv / Hostname",
+  "desc": "Environment and machine",
+  "cat": "os",
+  "snippet": "host, _ := os.Hostname()\nfmt.Println(host, os.Getenv(\"USERNAME\"))"
+ },
+ {
+  "name": "exec.Command",
+  "desc": "Run another program",
+  "cat": "os",
+  "snippet": "out, err := exec.Command(\"hostname\").Output()\nif err != nil {\n\tlog.Fatal(err)\n}\nfmt.Print(string(out))"
+ },
+ {
+  "name": "encoding/json",
+  "desc": "Struct to JSON and back",
+  "cat": "os",
+  "snippet": "type User struct {\n\tName string `json:\"name\"`\n\tAge  int    `json:\"age\"`\n}\nb, _ := json.MarshalIndent(User{\"Ann\", 31}, \"\", \"  \")\nfmt.Println(string(b))\nvar u User\njson.Unmarshal(b, &u)"
+ },
+ {
+  "name": "encoding/csv",
+  "desc": "Read a CSV file",
+  "cat": "os",
+  "snippet": "f, _ := os.Open(\"data.csv\")\ndefer f.Close()\nrows, err := csv.NewReader(f).ReadAll()\nif err != nil {\n\tlog.Fatal(err)\n}\nfor _, row := range rows {\n\tfmt.Println(row)\n}"
+ },
+ {
+  "name": "time",
+  "desc": "Dates, durations, formatting",
+  "cat": "os",
+  "snippet": "now := time.Now()\nfmt.Println(now.Format(\"2006-01-02 15:04\"), now.Add(-24*time.Hour).Weekday())\ntime.Sleep(500 * time.Millisecond)"
+ },
+ {
+  "name": "goroutine + WaitGroup",
+  "desc": "Run work concurrently",
+  "cat": "concurrency",
+  "snippet": "var wg sync.WaitGroup\nfor i := 1; i <= 3; i++ {\n\twg.Add(1)\n\tgo func(n int) {\n\t\tdefer wg.Done()\n\t\tfmt.Println(\"worker\", n)\n\t}(i)\n}\nwg.Wait()"
+ },
+ {
+  "name": "channel",
+  "desc": "Pass values between goroutines",
+  "cat": "concurrency",
+  "snippet": "ch := make(chan int)\ngo func() {\n\tfor i := 0; i < 3; i++ {\n\t\tch <- i\n\t}\n\tclose(ch)\n}()\nfor v := range ch {\n\tfmt.Println(v)\n}"
+ },
+ {
+  "name": "select with timeout",
+  "desc": "Wait on several channels",
+  "cat": "concurrency",
+  "snippet": "select {\ncase v := <-ch:\n\tfmt.Println(v)\ncase <-time.After(2 * time.Second):\n\tfmt.Println(\"timed out\")\n}"
+ },
+ {
+  "name": "http.ListenAndServe",
+  "desc": "Tiny web server",
+  "cat": "net",
+  "snippet": "http.HandleFunc(\"/\", func(w http.ResponseWriter, r *http.Request) {\n\tfmt.Fprintln(w, \"Hello from Go\")\n})\nlog.Fatal(http.ListenAndServe(\":8080\", nil))"
+ },
+ {
+  "name": "port scan",
+  "desc": "Check a few TCP ports",
+  "cat": "net",
+  "snippet": "for _, port := range []string{\"22\", \"80\", \"443\"} {\n\tconn, err := net.DialTimeout(\"tcp\", \"example.com:\"+port, 2*time.Second)\n\tif err == nil {\n\t\tfmt.Println(port, \"open\")\n\t\tconn.Close()\n\t}\n}"
+ },
+ {
+  "name": "log.Fatal",
+  "desc": "Print an error and exit",
+  "cat": "flow",
+  "snippet": "if err != nil {\n\tlog.Fatalf(\"failed: %v\", err)\n}"
+ }
+]

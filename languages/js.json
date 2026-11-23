@@ -1,0 +1,45 @@
+{
+  "id": "js",
+  "name": "JavaScript / TypeScript",
+  "short": "JS",
+  "order": 4,
+  "bundled": true,
+  "extensions": [
+    ".js",
+    ".mjs",
+    ".ts"
+  ],
+  "monaco": "javascript",
+  "monacoByExt": {
+    ".ts": "typescript"
+  },
+  "orb": {
+    "color": "#f7df1e",
+    "dark": "#8c7a00",
+    "text": "#1b1b1b"
+  },
+  "runtime": {
+    "label": "Node.js",
+    "local": [
+      "runtimes/node/node.exe"
+    ],
+    "probe": [
+      "node"
+    ],
+    "catalog": "node",
+    "verify": [
+      "--version"
+    ]
+  },
+  "run": [
+    "{runtime} \"{file}\""
+  ],
+  "repl": {
+    "cmd": "{runtime} -i",
+    "load": ".load {file}"
+  },
+  "lsp": null,
+  "builtinNote": "Uses the TypeScript language service built into the editor",
+  "library": "library/javascript.json",
+  "template": "console.log(\"Hello from JavaScript\");\n"
+}

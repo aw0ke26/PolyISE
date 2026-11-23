@@ -1,0 +1,40 @@
+{
+  "id": "go",
+  "name": "Go",
+  "short": "GO",
+  "order": 5,
+  "bundled": false,
+  "extensions": [
+    ".go"
+  ],
+  "monaco": "go",
+  "orb": {
+    "color": "#29beb0",
+    "dark": "#0b5a55",
+    "text": "#04201e"
+  },
+  "runtime": {
+    "label": "Go",
+    "local": [
+      "runtimes/go/bin/go.exe"
+    ],
+    "probe": [
+      "go"
+    ],
+    "catalog": "go",
+    "verify": [
+      "version"
+    ]
+  },
+  "run": [
+    "{runtime} run \"{file}\""
+  ],
+  "repl": null,
+  "lsp": {
+    "name": "gopls",
+    "catalog": "gopls",
+    "languageId": "go"
+  },
+  "library": "library/go.json",
+  "template": "package main\n\nimport \"fmt\"\n\nfunc main() {\n    fmt.Println(\"Hello from Go\")\n}\n"
+}

@@ -1,0 +1,90 @@
+{
+  "name": "polyise",
+  "productName": "POLY-ISE",
+  "version": "0.1.29",
+  "description": "Y2K-styled ISE-like multi-language script editor and tester",
+  "main": "main.js",
+  "private": true,
+  "author": "Gatlin Brown",
+  "scripts": {
+    "start": "electron .",
+    "fetch-runtimes": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/fetch-runtimes.ps1",
+    "dist": "electron-builder --win nsis",
+    "dist:folder": "electron-builder --win dir"
+  },
+  "dependencies": {
+    "monaco-editor": "0.57.0"
+  },
+  "devDependencies": {
+    "electron": "45.4.1",
+    "electron-builder": "26.18.0",
+    "resedit": "^3.1.1"
+  },
+  "build": {
+    "appId": "com.polyise.editor",
+    "productName": "POLY-ISE",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "renderer/**/*",
+      "node_modules/monaco-editor/min/**/*",
+      "package.json"
+    ],
+    "extraFiles": [
+      {
+        "from": "languages",
+        "to": "languages"
+      },
+      {
+        "from": "library",
+        "to": "library"
+      },
+      {
+        "from": "catalog",
+        "to": "catalog"
+      },
+      {
+        "from": "config.json",
+        "to": "config.json"
+      },
+      {
+        "from": "README.md",
+        "to": "README.md"
+      },
+      {
+        "from": "scripts",
+        "to": "scripts"
+      },
+      {
+        "from": "tools",
+        "to": "tools"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "build/icon.ico",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "POLY-ISE",
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "artifactName": "POLY-ISE-Setup-${version}.exe",
+      "deleteAppDataOnUninstall": false,
+      "include": "build/installer.nsh"
+    },
+    "afterPack": "build/afterPack.js",
+    "publish": null
+  }
+}

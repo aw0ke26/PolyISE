@@ -1,0 +1,39 @@
+{
+  "id": "rs",
+  "name": "Rust",
+  "short": "RS",
+  "order": 6,
+  "bundled": false,
+  "extensions": [
+    ".rs"
+  ],
+  "monaco": "rust",
+  "orb": {
+    "color": "#e08a5a",
+    "dark": "#7a3010",
+    "text": "#ffffff"
+  },
+  "runtime": {
+    "label": "Rust (rustc)",
+    "local": [],
+    "probe": [
+      "rustc"
+    ],
+    "catalog": "rust",
+    "verify": [
+      "--version"
+    ]
+  },
+  "run": [
+    "rustc \"{file}\" -o \"{out}\"",
+    "\"{out}\""
+  ],
+  "repl": null,
+  "lsp": {
+    "name": "rust-analyzer",
+    "catalog": "rust-analyzer",
+    "languageId": "rust"
+  },
+  "library": "library/rust.json",
+  "template": "fn main() {\n    println!(\"Hello from Rust\");\n}\n"
+}

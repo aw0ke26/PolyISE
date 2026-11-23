@@ -1,0 +1,44 @@
+{
+  "id": "sh",
+  "name": "Bash",
+  "short": "SH",
+  "order": 7,
+  "bundled": false,
+  "extensions": [
+    ".sh",
+    ".bash"
+  ],
+  "monaco": "shell",
+  "orb": {
+    "color": "#4a515c",
+    "dark": "#15181c",
+    "text": "#9cff8a"
+  },
+  "runtime": {
+    "label": "Bash (Git Bash)",
+    "local": [
+      "runtimes/git/bin/bash.exe"
+    ],
+    "probe": [
+      "bash"
+    ],
+    "catalog": "git",
+    "verify": [
+      "--version"
+    ]
+  },
+  "run": [
+    "{runtime} \"{file}\""
+  ],
+  "repl": {
+    "cmd": "{runtime} -s",
+    "load": "source '{file}'"
+  },
+  "lsp": {
+    "name": "bash-language-server",
+    "catalog": "bashls",
+    "languageId": "shellscript"
+  },
+  "library": "library/bash.json",
+  "template": "#!/usr/bin/env bash\necho \"Hello from Bash\"\n"
+}

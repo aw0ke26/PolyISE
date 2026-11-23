@@ -1,0 +1,11 @@
+dist/
+node_modules/
+runtimes/*
+!runtimes/.gitkeep
+servers/*
+!servers/.gitkeep
+data/*
+!data/.gitkeep
+tools/MediaHelper/bin/
+tools/MediaHelper/obj/
+*.log

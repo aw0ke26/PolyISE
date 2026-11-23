@@ -1,0 +1,344 @@
+[
+ {
+  "name": "echo",
+  "desc": "Print text",
+  "cat": "Text",
+  "snippet": "echo \"\""
+ },
+ {
+  "name": "grep",
+  "desc": "Search text with patterns",
+  "cat": "Text",
+  "snippet": "grep -i 'pattern' file.txt"
+ },
+ {
+  "name": "sed",
+  "desc": "Find and replace in a stream",
+  "cat": "Text",
+  "snippet": "sed 's/old/new/g' file.txt"
+ },
+ {
+  "name": "awk",
+  "desc": "Column-based text processing",
+  "cat": "Text",
+  "snippet": "awk '{print $1}' file.txt"
+ },
+ {
+  "name": "ls",
+  "desc": "List directory contents",
+  "cat": "Files",
+  "snippet": "ls -la"
+ },
+ {
+  "name": "find",
+  "desc": "Find files",
+  "cat": "Files",
+  "snippet": "find . -name '*.log'"
+ },
+ {
+  "name": "tar",
+  "desc": "Pack or unpack archives",
+  "cat": "Files",
+  "snippet": "tar -czf out.tar.gz folder/"
+ },
+ {
+  "name": "if [ … ]; then",
+  "desc": "Test a condition",
+  "cat": "Flow",
+  "snippet": "if [ -f \"$file\" ]; then\n    echo yes\nfi"
+ },
+ {
+  "name": "for x in …; do",
+  "desc": "Loop over items",
+  "cat": "Flow",
+  "snippet": "for x in *; do\n    echo \"$x\"\ndone"
+ },
+ {
+  "name": "function",
+  "desc": "Define a function",
+  "cat": "Flow",
+  "snippet": "myfunc() {\n    echo \"$1\"\n}"
+ },
+ {
+  "name": "chmod",
+  "desc": "Change file permissions",
+  "cat": "System",
+  "snippet": "chmod +x script.sh"
+ },
+ {
+  "name": "curl",
+  "desc": "Call a URL",
+  "cat": "System",
+  "snippet": "curl -s https://example.com"
+ },
+ {
+  "name": "variables",
+  "desc": "Set and use variables",
+  "cat": "Basics",
+  "snippet": "name=\"World\"\necho \"Hello, $name\""
+ },
+ {
+  "name": "read",
+  "desc": "Ask the user for input",
+  "cat": "Basics",
+  "snippet": "read -rp \"Your name: \" name\necho \"Hi $name\""
+ },
+ {
+  "name": "$( )",
+  "desc": "Use a command's output",
+  "cat": "Basics",
+  "snippet": "today=$(date +%F)\necho \"Report for $today\""
+ },
+ {
+  "name": "arguments",
+  "desc": "Script arguments",
+  "cat": "Basics",
+  "snippet": "echo \"script: $0, first: $1, count: $#\"\nfor arg in \"$@\"; do echo \"$arg\"; done"
+ },
+ {
+  "name": "arrays",
+  "desc": "Lists of values",
+  "cat": "Basics",
+  "snippet": "servers=(web01 web02 db01)\necho \"${servers[0]} ${#servers[@]}\"\nfor s in \"${servers[@]}\"; do echo \"$s\"; done"
+ },
+ {
+  "name": "arithmetic",
+  "desc": "Math with $(( ))",
+  "cat": "Basics",
+  "snippet": "count=5\necho $(( count * 2 + 1 ))\n(( count++ ))"
+ },
+ {
+  "name": "exit codes",
+  "desc": "Check if a command worked",
+  "cat": "Basics",
+  "snippet": "if ping -c1 -W2 8.8.8.8 >/dev/null; then\n  echo \"online\"\nelse\n  echo \"offline (code $?)\"\nfi"
+ },
+ {
+  "name": "set -euo pipefail",
+  "desc": "Stop on errors",
+  "cat": "Basics",
+  "snippet": "#!/usr/bin/env bash\nset -euo pipefail"
+ },
+ {
+  "name": "cut",
+  "desc": "Pick columns",
+  "cat": "Text",
+  "snippet": "cut -d: -f1 /etc/passwd"
+ },
+ {
+  "name": "sort | uniq -c",
+  "desc": "Count unique lines",
+  "cat": "Text",
+  "snippet": "sort access.log | uniq -c | sort -rn | head"
+ },
+ {
+  "name": "wc",
+  "desc": "Count lines, words, bytes",
+  "cat": "Text",
+  "snippet": "wc -l *.txt"
+ },
+ {
+  "name": "head / tail",
+  "desc": "First or last lines",
+  "cat": "Text",
+  "snippet": "head -n 5 file.txt\ntail -n 20 -f /var/log/syslog"
+ },
+ {
+  "name": "tr",
+  "desc": "Translate characters",
+  "cat": "Text",
+  "snippet": "echo \"Hello\" | tr '[:lower:]' '[:upper:]'"
+ },
+ {
+  "name": "printf",
+  "desc": "Formatted output",
+  "cat": "Text",
+  "snippet": "printf \"%-10s %5d\\n\" \"apples\" 42"
+ },
+ {
+  "name": "string ops",
+  "desc": "Length, substring, replace",
+  "cat": "Text",
+  "snippet": "s=\"hello-world\"\necho \"${#s} ${s:0:5} ${s/-/ }\""
+ },
+ {
+  "name": "here-doc",
+  "desc": "Multi-line text",
+  "cat": "Text",
+  "snippet": "cat <<EOF\nHost: $(hostname)\nUser: $USER\nEOF"
+ },
+ {
+  "name": "grep -r",
+  "desc": "Search a folder recursively",
+  "cat": "Text",
+  "snippet": "grep -rn \"TODO\" --include=\"*.py\" ."
+ },
+ {
+  "name": "jq",
+  "desc": "Read JSON (if installed)",
+  "cat": "Text",
+  "snippet": "echo '{\"name\":\"Ann\",\"age\":31}' | jq -r '.name'"
+ },
+ {
+  "name": "mkdir -p",
+  "desc": "Create nested folders",
+  "cat": "Files",
+  "snippet": "mkdir -p backup/$(date +%F)"
+ },
+ {
+  "name": "cp / mv / rm",
+  "desc": "Copy, move, delete",
+  "cat": "Files",
+  "snippet": "cp -r src/ backup/\nmv old.txt new.txt\nrm -i unwanted.txt"
+ },
+ {
+  "name": "test -f / -d",
+  "desc": "Does it exist?",
+  "cat": "Files",
+  "snippet": "if [ -f config.ini ]; then echo \"file\"; fi\nif [ -d logs ]; then echo \"folder\"; fi"
+ },
+ {
+  "name": "du / df",
+  "desc": "Disk usage",
+  "cat": "Files",
+  "snippet": "du -sh * | sort -h\ndf -h"
+ },
+ {
+  "name": "find -mtime",
+  "desc": "Files changed recently",
+  "cat": "Files",
+  "snippet": "find . -type f -mtime -1"
+ },
+ {
+  "name": "find -exec",
+  "desc": "Run a command on each match",
+  "cat": "Files",
+  "snippet": "find . -name \"*.log\" -size +10M -exec ls -lh {} \\;"
+ },
+ {
+  "name": "while read",
+  "desc": "Loop over lines in a file",
+  "cat": "Files",
+  "snippet": "while IFS= read -r line; do\n  echo \"> $line\"\ndone < hosts.txt"
+ },
+ {
+  "name": "sha256sum",
+  "desc": "File checksum",
+  "cat": "Files",
+  "snippet": "sha256sum file.iso"
+ },
+ {
+  "name": "zip / unzip",
+  "desc": "Zip files",
+  "cat": "Files",
+  "snippet": "zip -r archive.zip folder/\nunzip archive.zip -d out/"
+ },
+ {
+  "name": "case",
+  "desc": "Match one value against many",
+  "cat": "Flow",
+  "snippet": "case \"$1\" in\n  start) echo \"starting\" ;;\n  stop)  echo \"stopping\" ;;\n  *)     echo \"usage: $0 start|stop\" ;;\nesac"
+ },
+ {
+  "name": "while loop",
+  "desc": "Loop while true",
+  "cat": "Flow",
+  "snippet": "n=0\nwhile [ $n -lt 3 ]; do\n  n=$((n+1))\n  echo \"try $n\"\ndone"
+ },
+ {
+  "name": "for (( ))",
+  "desc": "Counted loop",
+  "cat": "Flow",
+  "snippet": "for (( i=1; i<=5; i++ )); do\n  echo \"pass $i\"\ndone"
+ },
+ {
+  "name": "&& / ||",
+  "desc": "Run next only on success/failure",
+  "cat": "Flow",
+  "snippet": "mkdir -p out && echo \"ready\" || echo \"failed\""
+ },
+ {
+  "name": "trap",
+  "desc": "Clean up on exit",
+  "cat": "Flow",
+  "snippet": "tmp=$(mktemp)\ntrap 'rm -f \"$tmp\"' EXIT"
+ },
+ {
+  "name": "ps / pgrep",
+  "desc": "Find processes",
+  "cat": "System",
+  "snippet": "ps aux --sort=-%cpu | head\npgrep -a ssh"
+ },
+ {
+  "name": "kill",
+  "desc": "Stop a process",
+  "cat": "System",
+  "snippet": "kill \"$(pgrep -f myscript)\""
+ },
+ {
+  "name": "date",
+  "desc": "Dates and formatting",
+  "cat": "System",
+  "snippet": "date +\"%Y-%m-%d %H:%M\"\ndate -d \"7 days ago\" +%F"
+ },
+ {
+  "name": "uname / hostname",
+  "desc": "Machine info",
+  "cat": "System",
+  "snippet": "uname -a\nhostname\nwhoami"
+ },
+ {
+  "name": "env / export",
+  "desc": "Environment variables",
+  "cat": "System",
+  "snippet": "export APP_ENV=dev\nenv | grep APP_"
+ },
+ {
+  "name": "sleep",
+  "desc": "Pause",
+  "cat": "System",
+  "snippet": "for i in 3 2 1; do echo $i; sleep 1; done"
+ },
+ {
+  "name": "crontab",
+  "desc": "Schedule a job",
+  "cat": "System",
+  "snippet": "# run every day at 7am (edit with: crontab -e)\n0 7 * * * /home/user/backup.sh"
+ },
+ {
+  "name": "ping",
+  "desc": "Is a host reachable?",
+  "cat": "Network",
+  "snippet": "ping -c 4 example.com"
+ },
+ {
+  "name": "dig / nslookup",
+  "desc": "DNS lookup",
+  "cat": "Network",
+  "snippet": "dig +short example.com\nnslookup example.com"
+ },
+ {
+  "name": "ssh",
+  "desc": "Run a command on another machine",
+  "cat": "Network",
+  "snippet": "ssh user@server01 'uptime'"
+ },
+ {
+  "name": "scp",
+  "desc": "Copy files over SSH",
+  "cat": "Network",
+  "snippet": "scp report.txt user@server01:/tmp/"
+ },
+ {
+  "name": "curl JSON",
+  "desc": "Call an API",
+  "cat": "Network",
+  "snippet": "curl -s https://api.github.com/repos/git/git | head"
+ },
+ {
+  "name": "ip / ss",
+  "desc": "Addresses and open ports",
+  "cat": "Network",
+  "snippet": "ip -brief address\nss -tulpn"
+ }
+]

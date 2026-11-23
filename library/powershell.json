@@ -1,0 +1,542 @@
+[
+ {
+  "name": "Get-ADUser",
+  "desc": "Look up AD user accounts",
+  "cat": "AD",
+  "snippet": "Get-ADUser -Identity username -Properties *"
+ },
+ {
+  "name": "Get-ADComputer",
+  "desc": "Look up AD computer objects",
+  "cat": "AD",
+  "snippet": "Get-ADComputer -Filter * -Properties LastLogonDate"
+ },
+ {
+  "name": "Get-ADGroupMember",
+  "desc": "List members of an AD group",
+  "cat": "AD",
+  "snippet": "Get-ADGroupMember -Identity 'GroupName'"
+ },
+ {
+  "name": "Where-Object",
+  "desc": "Filter objects in the pipeline",
+  "cat": "Pipeline",
+  "snippet": "Where-Object { $_.Property -eq 'value' }"
+ },
+ {
+  "name": "Select-Object",
+  "desc": "Pick properties to keep",
+  "cat": "Pipeline",
+  "snippet": "Select-Object Name, Property"
+ },
+ {
+  "name": "ForEach-Object",
+  "desc": "Run a block for each item",
+  "cat": "Pipeline",
+  "snippet": "ForEach-Object { $_ }"
+ },
+ {
+  "name": "Sort-Object",
+  "desc": "Sort pipeline objects",
+  "cat": "Pipeline",
+  "snippet": "Sort-Object -Property Name"
+ },
+ {
+  "name": "Get-ChildItem",
+  "desc": "List files and folders",
+  "cat": "Files",
+  "snippet": "Get-ChildItem -Path . -Recurse -File"
+ },
+ {
+  "name": "Get-Content",
+  "desc": "Read a file",
+  "cat": "Files",
+  "snippet": "Get-Content -Path .\\file.txt"
+ },
+ {
+  "name": "Export-Csv",
+  "desc": "Save objects to a CSV file",
+  "cat": "Files",
+  "snippet": "Export-Csv -Path .\\out.csv -NoTypeInformation"
+ },
+ {
+  "name": "Import-Csv",
+  "desc": "Read a CSV file into objects",
+  "cat": "Files",
+  "snippet": "Import-Csv -Path .\\in.csv"
+ },
+ {
+  "name": "Test-Connection",
+  "desc": "Ping a host",
+  "cat": "Network",
+  "snippet": "Test-Connection -ComputerName host -Count 2"
+ },
+ {
+  "name": "Invoke-Command",
+  "desc": "Run a script block on remote computers",
+  "cat": "Network",
+  "snippet": "Invoke-Command -ComputerName PC01 -ScriptBlock { hostname }"
+ },
+ {
+  "name": "Invoke-RestMethod",
+  "desc": "Call a web API",
+  "cat": "Network",
+  "snippet": "Invoke-RestMethod -Uri 'https://example.com/api' -Method Get"
+ },
+ {
+  "name": "try / catch",
+  "desc": "Handle errors",
+  "cat": "Flow",
+  "snippet": "try {\n    \n} catch {\n    Write-Warning $_.Exception.Message\n}"
+ },
+ {
+  "name": "Get-ADUser (filter)",
+  "desc": "Find users matching a filter",
+  "cat": "AD",
+  "snippet": "Get-ADUser -Filter \"Name -like '*smith*'\" -Properties Department, LastLogonDate |\n    Select-Object Name, SamAccountName, Department, LastLogonDate"
+ },
+ {
+  "name": "Disabled AD users",
+  "desc": "List disabled user accounts",
+  "cat": "AD",
+  "snippet": "Search-ADAccount -AccountDisabled -UsersOnly | Select-Object Name, SamAccountName"
+ },
+ {
+  "name": "Inactive computers",
+  "desc": "Computers not logged on in 90 days",
+  "cat": "AD",
+  "snippet": "$cutoff = (Get-Date).AddDays(-90)\nGet-ADComputer -Filter 'LastLogonDate -lt $cutoff' -Properties LastLogonDate |\n    Select-Object Name, LastLogonDate | Sort-Object LastLogonDate"
+ },
+ {
+  "name": "Locked-out users",
+  "desc": "Find locked-out accounts",
+  "cat": "AD",
+  "snippet": "Search-ADAccount -LockedOut | Select-Object Name, SamAccountName, LastLogonDate"
+ },
+ {
+  "name": "Unlock-ADAccount",
+  "desc": "Unlock a user account",
+  "cat": "AD",
+  "snippet": "Unlock-ADAccount -Identity username"
+ },
+ {
+  "name": "Set-ADAccountPassword",
+  "desc": "Reset a password",
+  "cat": "AD",
+  "snippet": "Set-ADAccountPassword -Identity username -Reset -NewPassword (Read-Host 'New password' -AsSecureString)\nSet-ADUser -Identity username -ChangePasswordAtLogon $true"
+ },
+ {
+  "name": "Add-ADGroupMember",
+  "desc": "Add users to a group",
+  "cat": "AD",
+  "snippet": "Add-ADGroupMember -Identity 'GroupName' -Members user1, user2"
+ },
+ {
+  "name": "Get-ADPrincipalGroupMembership",
+  "desc": "List a user's groups",
+  "cat": "AD",
+  "snippet": "Get-ADPrincipalGroupMembership -Identity username | Select-Object Name | Sort-Object Name"
+ },
+ {
+  "name": "Move-ADObject",
+  "desc": "Move an object to another OU",
+  "cat": "AD",
+  "snippet": "Get-ADComputer 'PC-NAME' | Move-ADObject -TargetPath 'OU=Workstations,DC=contoso,DC=com'"
+ },
+ {
+  "name": "Get-ADOrganizationalUnit",
+  "desc": "List OUs",
+  "cat": "AD",
+  "snippet": "Get-ADOrganizationalUnit -Filter * | Select-Object Name, DistinguishedName"
+ },
+ {
+  "name": "New-ADUser",
+  "desc": "Create a user",
+  "cat": "AD",
+  "snippet": "New-ADUser -Name 'First Last' -GivenName First -Surname Last -SamAccountName flast `\n    -UserPrincipalName 'flast@contoso.com' -Path 'OU=Staff,DC=contoso,DC=com' `\n    -AccountPassword (Read-Host 'Password' -AsSecureString) -Enabled $true"
+ },
+ {
+  "name": "Group-Object",
+  "desc": "Count items by a property",
+  "cat": "Pipeline",
+  "snippet": "Get-Service | Group-Object Status | Select-Object Name, Count"
+ },
+ {
+  "name": "Measure-Object",
+  "desc": "Count, sum, average",
+  "cat": "Pipeline",
+  "snippet": "Get-ChildItem -File | Measure-Object Length -Sum -Average -Maximum"
+ },
+ {
+  "name": "Calculated property",
+  "desc": "Add a computed column",
+  "cat": "Pipeline",
+  "snippet": "Get-ChildItem -File | Select-Object Name, @{ Name = 'SizeMB'; Expression = { [math]::Round($_.Length / 1MB, 2) } }"
+ },
+ {
+  "name": "[PSCustomObject]",
+  "desc": "Build your own object",
+  "cat": "Pipeline",
+  "snippet": "[PSCustomObject]@{\n    Name    = $env:COMPUTERNAME\n    User    = $env:USERNAME\n    Checked = Get-Date\n}"
+ },
+ {
+  "name": "Format-Table",
+  "desc": "Show as a table",
+  "cat": "Pipeline",
+  "snippet": "Get-Process | Sort-Object CPU -Descending | Select-Object -First 10 | Format-Table Name, Id, CPU -AutoSize"
+ },
+ {
+  "name": "Out-GridView",
+  "desc": "Pick items in a grid window",
+  "cat": "Pipeline",
+  "snippet": "Get-Service | Out-GridView -Title 'Pick services' -PassThru"
+ },
+ {
+  "name": "Compare-Object",
+  "desc": "Differences between two lists",
+  "cat": "Pipeline",
+  "snippet": "Compare-Object (Get-Content a.txt) (Get-Content b.txt)"
+ },
+ {
+  "name": "Test-Path",
+  "desc": "Check a file or folder exists",
+  "cat": "Files",
+  "snippet": "if (Test-Path 'C:\\Temp\\file.txt') { 'exists' } else { 'missing' }"
+ },
+ {
+  "name": "New-Item (folder)",
+  "desc": "Create a folder",
+  "cat": "Files",
+  "snippet": "New-Item -ItemType Directory -Path 'C:\\Temp\\NewFolder' -Force"
+ },
+ {
+  "name": "Copy-Item",
+  "desc": "Copy files or folders",
+  "cat": "Files",
+  "snippet": "Copy-Item -Path 'C:\\Source\\*' -Destination 'D:\\Backup' -Recurse -Force"
+ },
+ {
+  "name": "Move-Item",
+  "desc": "Move or rename",
+  "cat": "Files",
+  "snippet": "Move-Item -Path 'C:\\Temp\\old.txt' -Destination 'C:\\Temp\\new.txt'"
+ },
+ {
+  "name": "Remove-Item",
+  "desc": "Delete files (preview first)",
+  "cat": "Files",
+  "snippet": "Remove-Item -Path 'C:\\Temp\\*.log' -WhatIf"
+ },
+ {
+  "name": "Set-Content / Add-Content",
+  "desc": "Write or append text",
+  "cat": "Files",
+  "snippet": "Set-Content -Path 'out.txt' -Value 'first line'\nAdd-Content -Path 'out.txt' -Value 'another line'"
+ },
+ {
+  "name": "Select-String",
+  "desc": "Search inside files (grep)",
+  "cat": "Files",
+  "snippet": "Select-String -Path 'C:\\Logs\\*.log' -Pattern 'error' | Select-Object Filename, LineNumber, Line"
+ },
+ {
+  "name": "Large files",
+  "desc": "Biggest files in a folder",
+  "cat": "Files",
+  "snippet": "Get-ChildItem C:\\Users -Recurse -File -ErrorAction SilentlyContinue |\n    Sort-Object Length -Descending | Select-Object -First 20 FullName, @{n='MB';e={[int]($_.Length/1MB)}}"
+ },
+ {
+  "name": "Folder size",
+  "desc": "Total size of a folder",
+  "cat": "Files",
+  "snippet": "$bytes = (Get-ChildItem 'C:\\Temp' -Recurse -File | Measure-Object Length -Sum).Sum\n'{0:N1} MB' -f ($bytes / 1MB)"
+ },
+ {
+  "name": "ConvertTo-Json / ConvertFrom-Json",
+  "desc": "Read and write JSON",
+  "cat": "Files",
+  "snippet": "$data = Get-Content 'settings.json' -Raw | ConvertFrom-Json\n$data | ConvertTo-Json -Depth 5 | Set-Content 'settings.json'"
+ },
+ {
+  "name": "Compress-Archive",
+  "desc": "Zip files",
+  "cat": "Files",
+  "snippet": "Compress-Archive -Path 'C:\\Reports\\*' -DestinationPath 'C:\\Reports.zip' -Force"
+ },
+ {
+  "name": "Expand-Archive",
+  "desc": "Unzip",
+  "cat": "Files",
+  "snippet": "Expand-Archive -Path 'C:\\Reports.zip' -DestinationPath 'C:\\Reports' -Force"
+ },
+ {
+  "name": "Get-FileHash",
+  "desc": "SHA-256 of a file",
+  "cat": "Files",
+  "snippet": "Get-FileHash -Path 'C:\\Downloads\\setup.exe' -Algorithm SHA256"
+ },
+ {
+  "name": "Get-Acl",
+  "desc": "Who has access to a folder",
+  "cat": "Files",
+  "snippet": "(Get-Acl 'C:\\Shared').Access | Select-Object IdentityReference, FileSystemRights, AccessControlType"
+ },
+ {
+  "name": "Get-Process",
+  "desc": "Running processes by CPU",
+  "cat": "System",
+  "snippet": "Get-Process | Sort-Object CPU -Descending | Select-Object -First 10 Name, Id, CPU, WS"
+ },
+ {
+  "name": "Stop-Process",
+  "desc": "End a process",
+  "cat": "System",
+  "snippet": "Stop-Process -Name notepad -WhatIf"
+ },
+ {
+  "name": "Get-Service",
+  "desc": "Services and their state",
+  "cat": "System",
+  "snippet": "Get-Service | Where-Object Status -eq 'Running' | Sort-Object DisplayName"
+ },
+ {
+  "name": "Restart-Service",
+  "desc": "Restart a service",
+  "cat": "System",
+  "snippet": "Restart-Service -Name Spooler -Force"
+ },
+ {
+  "name": "Get-CimInstance (OS)",
+  "desc": "OS version and last boot",
+  "cat": "System",
+  "snippet": "Get-CimInstance Win32_OperatingSystem | Select-Object Caption, Version, LastBootUpTime"
+ },
+ {
+  "name": "Disk space",
+  "desc": "Free space on each drive",
+  "cat": "System",
+  "snippet": "Get-CimInstance Win32_LogicalDisk -Filter 'DriveType=3' |\n    Select-Object DeviceID, @{n='FreeGB';e={[int]($_.FreeSpace/1GB)}}, @{n='SizeGB';e={[int]($_.Size/1GB)}}"
+ },
+ {
+  "name": "Serial number",
+  "desc": "BIOS serial and model",
+  "cat": "System",
+  "snippet": "Get-CimInstance Win32_BIOS | Select-Object SerialNumber\nGet-CimInstance Win32_ComputerSystem | Select-Object Manufacturer, Model"
+ },
+ {
+  "name": "Installed software",
+  "desc": "Programs from the registry",
+  "cat": "System",
+  "snippet": "Get-ItemProperty 'HKLM:\\Software\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*',\n                 'HKLM:\\Software\\WOW6432Node\\Microsoft\\Windows\\CurrentVersion\\Uninstall\\*' |\n    Where-Object DisplayName | Select-Object DisplayName, DisplayVersion, Publisher | Sort-Object DisplayName"
+ },
+ {
+  "name": "Get-HotFix",
+  "desc": "Installed Windows updates",
+  "cat": "System",
+  "snippet": "Get-HotFix | Sort-Object InstalledOn -Descending | Select-Object -First 10"
+ },
+ {
+  "name": "Get-WinEvent",
+  "desc": "Recent errors from the event log",
+  "cat": "System",
+  "snippet": "Get-WinEvent -FilterHashtable @{ LogName = 'System'; Level = 2; StartTime = (Get-Date).AddDays(-1) } -MaxEvents 50"
+ },
+ {
+  "name": "Logon events",
+  "desc": "Successful logons (Security log)",
+  "cat": "System",
+  "snippet": "Get-WinEvent -FilterHashtable @{ LogName = 'Security'; Id = 4624 } -MaxEvents 20 |\n    Select-Object TimeCreated, @{n='User';e={$_.Properties[5].Value}}"
+ },
+ {
+  "name": "Get-ItemProperty (registry)",
+  "desc": "Read a registry value",
+  "cat": "System",
+  "snippet": "Get-ItemProperty -Path 'HKLM:\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion' -Name ProductName, DisplayVersion"
+ },
+ {
+  "name": "Set-ItemProperty (registry)",
+  "desc": "Write a registry value",
+  "cat": "System",
+  "snippet": "Set-ItemProperty -Path 'HKCU:\\Software\\MyApp' -Name 'Setting' -Value 1 -Type DWord"
+ },
+ {
+  "name": "Get-ScheduledTask",
+  "desc": "List scheduled tasks",
+  "cat": "System",
+  "snippet": "Get-ScheduledTask | Where-Object State -ne 'Disabled' | Select-Object TaskName, TaskPath, State"
+ },
+ {
+  "name": "Register-ScheduledTask",
+  "desc": "Run a script on a schedule",
+  "cat": "System",
+  "snippet": "$action  = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument '-File C:\\Scripts\\job.ps1'\n$trigger = New-ScheduledTaskTrigger -Daily -At 7am\nRegister-ScheduledTask -TaskName 'Daily job' -Action $action -Trigger $trigger"
+ },
+ {
+  "name": "Local admins",
+  "desc": "Members of the local Administrators group",
+  "cat": "System",
+  "snippet": "Get-LocalGroupMember -Group 'Administrators'"
+ },
+ {
+  "name": "Restart-Computer",
+  "desc": "Restart a PC",
+  "cat": "System",
+  "snippet": "Restart-Computer -ComputerName PC-NAME -Force -WhatIf"
+ },
+ {
+  "name": "Test-NetConnection",
+  "desc": "Is a port open?",
+  "cat": "Network",
+  "snippet": "Test-NetConnection -ComputerName server01 -Port 443"
+ },
+ {
+  "name": "Resolve-DnsName",
+  "desc": "DNS lookup",
+  "cat": "Network",
+  "snippet": "Resolve-DnsName -Name example.com -Type A"
+ },
+ {
+  "name": "Get-NetIPAddress",
+  "desc": "IP addresses on this PC",
+  "cat": "Network",
+  "snippet": "Get-NetIPAddress -AddressFamily IPv4 | Select-Object InterfaceAlias, IPAddress, PrefixLength"
+ },
+ {
+  "name": "Get-NetAdapter",
+  "desc": "Network adapters and speed",
+  "cat": "Network",
+  "snippet": "Get-NetAdapter | Select-Object Name, Status, LinkSpeed, MacAddress"
+ },
+ {
+  "name": "Get-NetTCPConnection",
+  "desc": "Open connections and owning process",
+  "cat": "Network",
+  "snippet": "Get-NetTCPConnection -State Established |\n    Select-Object LocalPort, RemoteAddress, RemotePort, @{n='Process';e={(Get-Process -Id $_.OwningProcess).Name}}"
+ },
+ {
+  "name": "Ping sweep",
+  "desc": "Which hosts in a range answer",
+  "cat": "Network",
+  "snippet": "1..20 | ForEach-Object {\n    $ip = \"192.168.1.$_\"\n    if (Test-Connection $ip -Count 1 -Quiet) { \"$ip is up\" }\n}"
+ },
+ {
+  "name": "Invoke-WebRequest",
+  "desc": "Download a file",
+  "cat": "Network",
+  "snippet": "Invoke-WebRequest -Uri 'https://example.com/file.zip' -OutFile 'C:\\Temp\\file.zip'"
+ },
+ {
+  "name": "Enter-PSSession",
+  "desc": "Interactive remote shell",
+  "cat": "Network",
+  "snippet": "Enter-PSSession -ComputerName PC-NAME"
+ },
+ {
+  "name": "Get-Credential",
+  "desc": "Ask for a username and password",
+  "cat": "Network",
+  "snippet": "$cred = Get-Credential\nInvoke-Command -ComputerName server01 -Credential $cred -ScriptBlock { hostname }"
+ },
+ {
+  "name": "-split / -join",
+  "desc": "Split and join strings",
+  "cat": "Text",
+  "snippet": "$parts = 'a,b,c' -split ','\n$parts -join ' | '"
+ },
+ {
+  "name": "-replace",
+  "desc": "Regex find and replace",
+  "cat": "Text",
+  "snippet": "'Server-01' -replace '-\\d+$', ''"
+ },
+ {
+  "name": "-match",
+  "desc": "Regex match with captures",
+  "cat": "Text",
+  "snippet": "if ('user@contoso.com' -match '^(.+)@(.+)$') { $Matches[1]; $Matches[2] }"
+ },
+ {
+  "name": "Format operator",
+  "desc": "Format numbers and text",
+  "cat": "Text",
+  "snippet": "'{0} has {1:N0} files ({2:P0} done)' -f 'Reports', 12345, 0.42"
+ },
+ {
+  "name": "Here-string",
+  "desc": "Multi-line text",
+  "cat": "Text",
+  "snippet": "$text = @\"\nHello $env:USERNAME\nToday is $(Get-Date -Format D)\n\"@\n$text"
+ },
+ {
+  "name": "Get-Date",
+  "desc": "Dates and formatting",
+  "cat": "Text",
+  "snippet": "Get-Date -Format 'yyyy-MM-dd HH:mm'\n(Get-Date).AddDays(-30)"
+ },
+ {
+  "name": "if / elseif / else",
+  "desc": "Branch on a condition",
+  "cat": "Flow",
+  "snippet": "if ($x -gt 10) {\n    'big'\n} elseif ($x -gt 5) {\n    'medium'\n} else {\n    'small'\n}"
+ },
+ {
+  "name": "switch",
+  "desc": "Match one value against many",
+  "cat": "Flow",
+  "snippet": "switch ($status) {\n    'Running' { 'ok' }\n    'Stopped' { 'start it' }\n    default   { 'unknown' }\n}"
+ },
+ {
+  "name": "foreach",
+  "desc": "Loop over a list",
+  "cat": "Flow",
+  "snippet": "foreach ($computer in Get-Content 'computers.txt') {\n    \"Checking $computer\"\n}"
+ },
+ {
+  "name": "for",
+  "desc": "Counted loop",
+  "cat": "Flow",
+  "snippet": "for ($i = 1; $i -le 5; $i++) {\n    \"Pass $i\"\n}"
+ },
+ {
+  "name": "while",
+  "desc": "Loop while true",
+  "cat": "Flow",
+  "snippet": "$tries = 0\nwhile ($tries -lt 3) {\n    $tries++\n    Start-Sleep -Seconds 1\n}"
+ },
+ {
+  "name": "function",
+  "desc": "Function with parameters",
+  "cat": "Flow",
+  "snippet": "function Get-Greeting {\n    param(\n        [Parameter(Mandatory)][string]$Name,\n        [int]$Times = 1\n    )\n    1..$Times | ForEach-Object { \"Hello, $Name\" }\n}\nGet-Greeting -Name 'World' -Times 2"
+ },
+ {
+  "name": "param block",
+  "desc": "Script parameters",
+  "cat": "Flow",
+  "snippet": "[CmdletBinding()]\nparam(\n    [string]$Path = '.',\n    [switch]$Recurse\n)"
+ },
+ {
+  "name": "Write-Progress",
+  "desc": "Progress bar for long loops",
+  "cat": "Flow",
+  "snippet": "$items = 1..50\nforeach ($i in $items) {\n    Write-Progress -Activity 'Working' -Status \"$i of $($items.Count)\" -PercentComplete ($i / $items.Count * 100)\n    Start-Sleep -Milliseconds 50\n}"
+ },
+ {
+  "name": "Start-Transcript",
+  "desc": "Log everything the script prints",
+  "cat": "Flow",
+  "snippet": "Start-Transcript -Path \"C:\\Logs\\run-$(Get-Date -Format yyyyMMdd).txt\"\n# ... script ...\nStop-Transcript"
+ },
+ {
+  "name": "Hashtable",
+  "desc": "Key/value lookup",
+  "cat": "Flow",
+  "snippet": "$rooms = @{ 'A101' = 'Lab'; 'B204' = 'Library' }\n$rooms['A101']\n$rooms.Keys"
+ },
+ {
+  "name": "-ErrorAction Stop",
+  "desc": "Make errors catchable",
+  "cat": "Flow",
+  "snippet": "try {\n    Get-Item 'C:\\missing.txt' -ErrorAction Stop\n} catch {\n    Write-Warning \"Failed: $($_.Exception.Message)\"\n}"
+ }
+]

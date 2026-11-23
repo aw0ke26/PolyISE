@@ -1,0 +1,227 @@
+{
+  "_readme": "Language catalog. 'source' entries look up the newest release and the vendor's own SHA-256 at install time; to pin a version instead, add source.pin = {version, url, sha256}. Downloads with a published hash must match it. 'trust: https' allows a download when the vendor publishes no hash. Later this file moves to GitHub (config.json -> catalogUrl).",
+  "servers": {
+    "pses": {
+      "type": "zip",
+      "source": {
+        "kind": "github",
+        "repo": "PowerShell/PowerShellEditorServices",
+        "asset": "^PowerShellEditorServices\\.zip$"
+      },
+      "trust": "https",
+      "launch": "{runtime} -NoLogo -NoProfile -ExecutionPolicy Bypass -Command \"& '{dir}\\PowerShellEditorServices\\Start-EditorServices.ps1' -HostName POLYISE -HostProfileId polyise -HostVersion 0.1.0 -BundledModulesPath '{dir}' -LogPath '{logs}\\pses.log' -SessionDetailsPath '{logs}\\pses-session.json' -FeatureFlags @() -AdditionalModules @() -Stdio\""
+    },
+    "pyright": {
+      "type": "npm",
+      "version": "1.1.414",
+      "packages": [
+        "pyright@1.1.414"
+      ],
+      "requires": "js",
+      "launch": "\"{dir}\\node_modules\\.bin\\pyright-langserver.cmd\" --stdio"
+    },
+    "omnisharp": {
+      "type": "zip",
+      "source": {
+        "kind": "github",
+        "repo": "OmniSharp/omnisharp-roslyn",
+        "asset": "^omnisharp-win-x64(-net[\\d.]+)?\\.zip$"
+      },
+      "trust": "https",
+      "needsRuntime": true,
+      "env": {
+        "DOTNET_ROLL_FORWARD": "Major"
+      },
+      "launch": [
+        {
+          "if": "{dir}\\OmniSharp.exe",
+          "cmd": "\"{dir}\\OmniSharp.exe\" -lsp"
+        },
+        {
+          "if": "{dir}\\OmniSharp.dll",
+          "cmd": "{runtime} \"{dir}\\OmniSharp.dll\" -lsp"
+        }
+      ]
+    },
+    "gopls": {
+      "type": "go",
+      "version": "latest",
+      "package": "golang.org/x/tools/gopls@latest",
+      "needsRuntime": true,
+      "launch": "\"{dir}\\gopls.exe\""
+    },
+    "rust-analyzer": {
+      "type": "zip",
+      "source": {
+        "kind": "github",
+        "repo": "rust-lang/rust-analyzer",
+        "asset": "^rust-analyzer-x86_64-pc-windows-msvc\\.zip$"
+      },
+      "trust": "https",
+      "launch": "\"{dir}\\rust-analyzer.exe\""
+    },
+    "bashls": {
+      "type": "npm",
+      "version": "5.8.1",
+      "packages": [
+        "bash-language-server@5.8.1"
+      ],
+      "requires": "js",
+      "launch": "\"{dir}\\node_modules\\.bin\\bash-language-server.cmd\" start"
+    }
+  },
+  "runtimes": {
+    "python": {
+      "type": "zip",
+      "source": {
+        "kind": "python",
+        "series": "3.13"
+      },
+      "trust": "https",
+      "post": "python-embed"
+    },
+    "node": {
+      "type": "zip",
+      "source": {
+        "kind": "node",
+        "major": "24"
+      },
+      "stripTop": true
+    },
+    "dotnet": {
+      "type": "script",
+      "url": "https://dot.net/v1/dotnet-install.ps1",
+      "args": "-InstallDir \"{dir}\" -Channel 10.0 -NoPath"
+    },
+    "go": {
+      "type": "zip",
+      "source": {
+        "kind": "go"
+      },
+      "stripTop": true
+    },
+    "git": {
+      "type": "sfx",
+      "source": {
+        "kind": "github",
+        "repo": "git-for-windows/git",
+        "asset": "^PortableGit-[\\d.]+-64-bit\\.7z\\.exe$"
+      },
+      "trust": "https"
+    },
+    "pwsh": {
+      "type": "zip",
+      "source": {
+        "kind": "github",
+        "repo": "PowerShell/PowerShell",
+        "asset": "^PowerShell-[\\d.]+-win-x64\\.zip$"
+      },
+      "trust": "https"
+    },
+    "rust": {
+      "type": "external",
+      "url": "https://www.rust-lang.org/tools/install"
+    }
+  },
+  "setup": [
+    {
+      "id": "rt-python",
+      "kind": "runtime",
+      "lang": "py",
+      "label": "Python",
+      "desc": "Runs Python scripts",
+      "size": "~25 MB",
+      "recommended": true
+    },
+    {
+      "id": "rt-node",
+      "kind": "runtime",
+      "lang": "js",
+      "label": "Node.js",
+      "desc": "Runs JavaScript/TypeScript; also installs some language servers",
+      "size": "~35 MB",
+      "recommended": true
+    },
+    {
+      "id": "rt-dotnet",
+      "kind": "runtime",
+      "lang": "cs",
+      "label": ".NET SDK 10",
+      "desc": "Runs C# files",
+      "size": "~250 MB",
+      "recommended": true
+    },
+    {
+      "id": "rt-go",
+      "kind": "runtime",
+      "lang": "go",
+      "label": "Go",
+      "desc": "Runs Go files",
+      "size": "~80 MB",
+      "recommended": false
+    },
+    {
+      "id": "rt-git",
+      "kind": "runtime",
+      "lang": "sh",
+      "label": "Git Bash (PortableGit)",
+      "desc": "Runs Bash scripts",
+      "size": "~60 MB",
+      "recommended": false
+    },
+    {
+      "id": "sv-pses",
+      "kind": "server",
+      "lang": "ps",
+      "label": "PowerShell Editor Services",
+      "desc": "PowerShell IntelliSense",
+      "size": "~20 MB",
+      "recommended": true
+    },
+    {
+      "id": "sv-pyright",
+      "kind": "server",
+      "lang": "py",
+      "label": "Pyright",
+      "desc": "Python IntelliSense (needs Node.js)",
+      "size": "~20 MB",
+      "recommended": true
+    },
+    {
+      "id": "sv-omnisharp",
+      "kind": "server",
+      "lang": "cs",
+      "label": "OmniSharp",
+      "desc": "C# IntelliSense (needs .NET)",
+      "size": "~60 MB",
+      "recommended": true
+    },
+    {
+      "id": "sv-gopls",
+      "kind": "server",
+      "lang": "go",
+      "label": "gopls",
+      "desc": "Go IntelliSense (needs Go)",
+      "size": "~30 MB",
+      "recommended": false
+    },
+    {
+      "id": "sv-bashls",
+      "kind": "server",
+      "lang": "sh",
+      "label": "bash-language-server",
+      "desc": "Bash IntelliSense (needs Node.js)",
+      "size": "~15 MB",
+      "recommended": false
+    },
+    {
+      "id": "sv-rust",
+      "kind": "server",
+      "lang": "rs",
+      "label": "rust-analyzer",
+      "desc": "Rust IntelliSense (Rust itself uses its official installer)",
+      "size": "~20 MB",
+      "recommended": false
+    }
+  ]
+}

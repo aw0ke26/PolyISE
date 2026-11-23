@@ -1,0 +1,45 @@
+{
+  "id": "py",
+  "name": "Python",
+  "short": "PY",
+  "order": 2,
+  "bundled": true,
+  "extensions": [
+    ".py",
+    ".pyw"
+  ],
+  "monaco": "python",
+  "orb": {
+    "color": "#4cc26a",
+    "dark": "#17602c",
+    "text": "#06210f"
+  },
+  "runtime": {
+    "label": "Python",
+    "local": [
+      "runtimes/python/python.exe"
+    ],
+    "probe": [
+      "python",
+      "py"
+    ],
+    "catalog": "python",
+    "verify": [
+      "--version"
+    ]
+  },
+  "run": [
+    "{runtime} -u \"{file}\""
+  ],
+  "repl": {
+    "cmd": "{runtime} -u -i -q",
+    "load": "exec(open(r'{file}', encoding='utf-8').read())"
+  },
+  "lsp": {
+    "name": "Pyright",
+    "catalog": "pyright",
+    "languageId": "python"
+  },
+  "library": "library/python.json",
+  "template": "print(\"Hello from Python\")\n"
+}

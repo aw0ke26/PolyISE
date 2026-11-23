@@ -1,0 +1,14 @@
+{
+  "catalogUrl": "",
+  "catalogRepo": "YOUR-GITHUB-USER/polyise-languages",
+  "defaults": {
+    "skin": "chrome",
+    "accent": "#b8f26b",
+    "sounds": true,
+    "autoServers": true,
+    "idleSeconds": 60,
+    "multiServer": false,
+    "pinned": []
+  },
+  "allowUnhashedDownloads": false
+}
