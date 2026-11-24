@@ -22,6 +22,19 @@ Nothing else needs to be installed for the app itself:
 - **Live**: runs on the real PC. Switching to Live asks for administrator approval (UAC) and lasts until the app closes.
 - In Learning mode, C# compiles offline with the SDK's compiler, so NuGet packages aren't available.
 
+
+## Practice folders
+
+The installer ships sample test data, and the first launch sets up these folders with no extra steps:
+
+| Folder (installed copy) | Learning mode | Live mode | Variable |
+| --- | --- | --- | --- |
+| `%LOCALAPPDATA%\POLY-ISE-Data\practice\testdata` | `C:\poly\data`, read-only | same folder, writable | `POLY_DATA` |
+| `%LOCALAPPDATA%\POLY-ISE-Data\practice\output` | `C:\poly\output`, writable | same folder | `POLY_OUTPUT` |
+| `%LOCALAPPDATA%\POLY-ISE-Data\practice\solutions` | not mapped | same folder | - |
+
+Use the variables so one script works in both modes: `Import-Csv "$env:POLY_DATA\students.csv"`. Files written to `POLY_OUTPUT` stay on this PC after the sandbox is wiped. Delete a test file to get the original back on the next launch. Portable installs keep `practice\` next to POLY-ISE.exe instead.
+
 ## Command library
 
 Each language has its own library of drag-and-drop snippets in `library/<lang>.json`. The **+** button at the top of the library adds your own command (name, description, category, code). Your commands are tagged **MINE**, can be edited or deleted with ✎, and are saved in `POLY-ISE-Data\data\custom-library.json`.

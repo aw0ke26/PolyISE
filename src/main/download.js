@@ -50,11 +50,12 @@ function run(file, args) {
   });
 }
 
-async function expandZip(zip, dest) {
+// Unpacks .zip and .tar.gz (Windows' tar.exe handles both). `exclude` skips matching paths (tar only).
+async function expandZip(zip, dest, exclude = []) {
   fs.mkdirSync(dest, { recursive: true });
   const tar = path.join(process.env.SystemRoot || 'C:\\Windows', 'System32', 'tar.exe');
   if (fs.existsSync(tar)) {
-    try { await run(tar, ['-xf', zip, '-C', dest]); return; } catch { /* fall through */ }
+    try { await run(tar, ['-xf', zip, '-C', dest, ...exclude.flatMap((x) => ['--exclude', x])]); return; } catch { /* fall through */ }
   }
   const q = (s) => s.replace(/'/g, "''");
   try {

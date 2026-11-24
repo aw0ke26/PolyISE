@@ -9,3 +9,6 @@ data/*
 tools/MediaHelper/bin/
 tools/MediaHelper/obj/
 *.log
+practice/output/
+practice/solutions/
+!practice/testdata/sample.log

@@ -132,7 +132,7 @@ class ServerManager {
         fs.renameSync(top, dir);
         fs.rmSync(tmp, { recursive: true, force: true });
       } else if (entry.type === 'zip') {
-        await expandZip(file, dir);
+        await expandZip(file, dir, entry.exclude || []);
       } else {
         await this.runCmd(`"${file}" -o"${dir}" -y`);
       }
@@ -151,9 +151,34 @@ class ServerManager {
       throw new Error(`${label}: unknown install type "${entry.type}".`);
     }
     if (entry.post === 'python-embed') { this.progress(key, { phase: 'install' }); await this.pythonEmbedPost(dir); }
+    if (entry.post === 'rust-merge') { this.progress(key, { phase: 'install' }); this.rustMergePost(dir); }
     writeJson(path.join(dir, '.installed.json'), { ...info, at: new Date().toISOString() });
     this.send('console:data', { stream: 'sys', text: `✓ ${label} ${info.version || ''} installed (${info.verified})\n` });
   }
+
+  // Rust's standalone tarball holds one folder per component (rustc/, cargo/, rust-std-*/, ...),
+  // each laid out like the final install. Merge them into one toolchain folder.
+  rustMergePost(dir) {
+    // Antivirus often holds freshly unpacked files for a moment, so folder renames fail with
+    // EBUSY. Copy into place instead, and retry deletes.
+    const rm = (p) => fs.rmSync(p, { recursive: true, force: true, maxRetries: 20, retryDelay: 300 });
+    const top = fs.readdirSync(dir).map((n) => path.join(dir, n)).find((p) => fs.existsSync(path.join(p, 'components')));
+    if (!top) throw new Error('Rust download had an unexpected layout (no components list).');
+    const comps = fs.readFileSync(path.join(top, 'components'), 'utf8').split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
+    // Components go straight into the runtime folder, next to the unpacked tarball folder.
+    for (const c of comps) {
+      const src = path.join(top, c);
+      if (!fs.existsSync(src)) continue; // docs are skipped at unpack time
+      for (const n of fs.readdirSync(src)) {
+        if (n === 'manifest.in') continue;
+        fs.cpSync(path.join(src, n), path.join(dir, n), { recursive: true, force: true });
+      }
+    }
+    try { rm(top); } catch { /* leftover tarball folder is harmless */ }
+    rm(dir + '.merge'); // from an earlier failed attempt
+    if (!fs.existsSync(path.join(dir, 'bin', 'rustc.exe'))) throw new Error('Rust install is missing bin\\rustc.exe after unpacking.');
+  }
+
 
   // The embeddable Python ignores site-packages until "import site" is enabled; then add pip.
   async pythonEmbedPost(dir) {

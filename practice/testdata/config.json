@@ -1,0 +1,21 @@
+{
+  "app": {
+    "name": "PracticeApp",
+    "version": "1.0.0",
+    "logging": {
+      "level": "INFO",
+      "file": "app.log",
+      "rotate": {
+        "enabled": true,
+        "keepDays": 7
+      }
+    }
+  },
+  "network": {
+    "timeoutSeconds": 2,
+    "hosts": [
+      "localhost",
+      "example.com"
+    ]
+  }
+}

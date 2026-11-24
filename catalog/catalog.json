@@ -119,8 +119,16 @@
       "trust": "https"
     },
     "rust": {
-      "type": "external",
-      "url": "https://www.rust-lang.org/tools/install"
+      "type": "zip",
+      "source": {
+        "kind": "rust",
+        "target": "x86_64-pc-windows-gnu"
+      },
+      "exclude": [
+        "*/rust-docs/*",
+        "*/rust-docs-json-preview/*"
+      ],
+      "post": "rust-merge"
     }
   },
   "setup": [
@@ -215,11 +223,20 @@
       "recommended": false
     },
     {
+      "id": "rt-rust",
+      "kind": "runtime",
+      "lang": "rs",
+      "label": "Rust (GNU toolchain)",
+      "desc": "Compiles and runs Rust files; includes its own linker, no Visual Studio needed",
+      "size": "~350 MB download",
+      "recommended": false
+    },
+    {
       "id": "sv-rust",
       "kind": "server",
       "lang": "rs",
       "label": "rust-analyzer",
-      "desc": "Rust IntelliSense (Rust itself uses its official installer)",
+      "desc": "Rust IntelliSense",
       "size": "~20 MB",
       "recommended": false
     }

@@ -28,12 +28,33 @@ const paths = {
   settings: path.join(store, 'data', 'settings.json'),
   customLibrary: path.join(store, 'data', 'custom-library.json'), // user-added commands, kept across updates
   config: path.join(root, 'config.json'),
-  mediaHelper: path.join(root, 'tools', 'media-helper.ps1')
+  mediaHelper: path.join(root, 'tools', 'media-helper.ps1'),
+  // Practice folders for the scripting path. Kept in the data store (not the install folder),
+  // so updates and uninstalls never delete your solutions or output.
+  practiceSeed: path.join(root, 'practice', 'testdata'), // shipped by the installer, never edited
+  practice: path.join(store, 'practice'),
+  practiceData: path.join(store, 'practice', 'testdata'),   // read-only in Learning mode
+  practiceOutput: path.join(store, 'practice', 'output'),   // writable in both modes
+  practiceSolutions: path.join(store, 'practice', 'solutions')
 };
 
-for (const dir of [paths.runtimes, paths.servers, paths.data, paths.scratch, paths.logs]) {
+for (const dir of [paths.runtimes, paths.servers, paths.data, paths.scratch, paths.logs,
+  paths.practiceData, paths.practiceOutput, paths.practiceSolutions]) {
   fs.mkdirSync(dir, { recursive: true });
 }
+
+// Copy the shipped test data into the practice folder. Only missing files are copied, so a
+// file you edited is never overwritten; delete a file to get the original back on next launch.
+function seedPractice() {
+  if (!fs.existsSync(paths.practiceSeed)) return;
+  for (const name of fs.readdirSync(paths.practiceSeed)) {
+    const dest = path.join(paths.practiceData, name);
+    if (!fs.existsSync(dest)) {
+      try { fs.copyFileSync(path.join(paths.practiceSeed, name), dest); } catch { /* skip */ }
+    }
+  }
+}
+seedPractice();
 
 function readJson(file, fallback) {
   try { return JSON.parse(fs.readFileSync(file, 'utf8')); } catch { return fallback; }
@@ -49,4 +70,4 @@ function fill(str, vars) {
   return String(str).replace(/\{(\w+)\}/g, (m, k) => (vars[k] !== undefined ? vars[k] : m));
 }
 
-module.exports = { paths, readJson, writeJson, fill };
+module.exports = { paths, readJson, writeJson, fill, seedPractice };

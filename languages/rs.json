@@ -15,7 +15,9 @@
   },
   "runtime": {
     "label": "Rust (rustc)",
-    "local": [],
+    "local": [
+      "runtimes/rust/bin/rustc.exe"
+    ],
     "probe": [
       "rustc"
     ],
@@ -25,7 +27,7 @@
     ]
   },
   "run": [
-    "rustc \"{file}\" -o \"{out}\"",
+    "{runtime} \"{file}\" -o \"{out}\"",
     "\"{out}\""
   ],
   "repl": null,

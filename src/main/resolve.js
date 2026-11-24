@@ -6,6 +6,7 @@
 //   go      -> go.dev/dl JSON; hash published by the Go team
 //   node    -> nodejs.org index + SHASUMS256.txt
 //   python  -> python.org; hash from python.org's release API when it provides one
+//   rust    -> static.rust-lang.org stable channel manifest; hash published in the manifest
 //   (none)  -> entry.url / entry.version / entry.sha256 are used as written (pinned)
 
 const UA = { 'User-Agent': 'POLY-ISE', Accept: 'application/json' };
@@ -76,6 +77,21 @@ async function python(src) {
   throw new Error(`No Python ${src.series} embeddable build found`);
 }
 
+async function rust(src) {
+  // The stable channel manifest lists each target's standalone tarball with its SHA-256.
+  const toml = await getText('https://static.rust-lang.org/dist/channel-rust-stable.toml');
+  const target = src.target || 'x86_64-pc-windows-gnu';
+  const head = `[pkg.rust.target.${target}]`;
+  const at = toml.indexOf(head);
+  if (at < 0) throw new Error(`The Rust stable manifest has no ${target} build`);
+  const section = toml.slice(at + head.length, toml.indexOf('\n[', at + head.length));
+  const url = (section.match(/^url\s*=\s*"([^"]+)"/m) || [])[1];
+  const sha = (section.match(/^hash\s*=\s*"([0-9a-f]{64})"/m) || [])[1] || '';
+  if (!url) throw new Error(`No download for ${target} in the Rust manifest`);
+  const ver = ((toml.match(/\[pkg\.rust\]\s*\nversion\s*=\s*"([^" ]+)/) || [])[1]) || '';
+  return { version: ver, url, sha256: sha, hashSource: sha ? 'rust-lang.org channel manifest' : '' };
+}
+
 async function resolve(entry) {
   const src = entry.source;
   if (!src) return { version: entry.version || '', url: entry.url, sha256: entry.sha256 || '', hashSource: entry.sha256 ? 'catalog' : '' };
@@ -84,6 +100,7 @@ async function resolve(entry) {
   if (src.kind === 'go') return go(src);
   if (src.kind === 'node') return node(src);
   if (src.kind === 'python') return python(src);
+  if (src.kind === 'rust') return rust(src);
   throw new Error(`Unknown source kind ${src.kind}`);
 }
 

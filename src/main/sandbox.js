@@ -39,6 +39,8 @@ $env:GOCACHE = "$cache\go-build"; $env:GOPATH = "$cache\gopath"; $env:GOTOOLCHAI
 $env:DOTNET_ROOT = "$rt\dotnet"; $env:DOTNET_CLI_HOME = "$cache\dotnet-home"; $env:NUGET_PACKAGES = "$cache\nuget"
 $env:DOTNET_NOLOGO = '1'; $env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE = '1'; $env:DOTNET_CLI_TELEMETRY_OPTOUT = '1'
 $env:PYTHONIOENCODING = 'utf-8'; $env:PYTHONDONTWRITEBYTECODE = '1'
+# Practice folders mapped from the PC (same names Live mode uses).
+$env:POLY_DATA = 'C:\poly\data'; $env:POLY_OUTPUT = 'C:\poly\output'
 
 # No network in here: don't let Windows wait on certificate revocation downloads.
 $k = 'HKLM:\SOFTWARE\Policies\Microsoft\SystemCertificates\ChainEngine\Config'
@@ -89,6 +91,13 @@ if (Test-Path "$rt\go\bin\go.exe") {
   [IO.File]::WriteAllText("$warmDir\hello.go", 'package main' + [Environment]::NewLine + 'import ("fmt"; "os"; "strings"; "time")' + [Environment]::NewLine + 'func main() { fmt.Println(strings.ToUpper("x"), os.Args, time.Now()) }')
   $goCmd = 'robocopy "' + "$rt\go" + '" C:\pgo /E /MT:8 /R:1 /W:1 /NFL /NDL /NJH /NJS /NP >nul & type nul > C:\pgo\.ready & C:\pgo\bin\go.exe build -o ' + "$warmDir\hello.exe $warmDir\hello.go"
   Start-Process cmd.exe -ArgumentList '/c', $goCmd -WorkingDirectory $warmDir -WindowStyle Hidden
+}
+# Rust: same idea as Go. rustc loads large compiler files, so copy the toolchain (minus the
+# library source, which only IntelliSense uses) to local disk, then warm it with a tiny build.
+if (Test-Path "$rt\rust\bin\rustc.exe") {
+  [IO.File]::WriteAllText("$warmDir\hello.rs", 'fn main() { println!("warm"); }')
+  $rsCmd = 'robocopy "' + "$rt\rust" + '" C:\prust /E /MT:8 /R:1 /W:1 /XD "' + "$rt\rust\lib\rustlib\src" + '" /NFL /NDL /NJH /NJS /NP >nul & type nul > C:\prust\.ready & C:\prust\bin\rustc.exe ' + "$warmDir\hello.rs -o $warmDir\hello-rs.exe"
+  Start-Process cmd.exe -ArgumentList '/c', $rsCmd -WorkingDirectory $warmDir -WindowStyle Hidden
 }
 # C#: compile a tiny program the same way real runs do, to start the compiler server early.
 if ((Test-Path "$rt\dotnet\dotnet.exe") -and (Test-Path "$jobs\cswarm.cmd")) {
@@ -262,14 +271,16 @@ function cmdHeader() {
   const C = 'C:\\pcache';
   return [
     'chcp 65001 >nul',
-    `set "PATH=${BOX}\\runtimes\\python;${BOX}\\runtimes\\python\\Scripts;${BOX}\\runtimes\\node;${BOX}\\runtimes\\go\\bin;${BOX}\\runtimes\\git\\bin;${BOX}\\runtimes\\dotnet;%PATH%"`,
+    `set "PATH=${BOX}\\runtimes\\python;${BOX}\\runtimes\\python\\Scripts;${BOX}\\runtimes\\node;${BOX}\\runtimes\\go\\bin;${BOX}\\runtimes\\rust\\bin;${BOX}\\runtimes\\git\\bin;${BOX}\\runtimes\\dotnet;%PATH%"`,
     `set "DOTNET_ROOT=${BOX}\\runtimes\\dotnet"`, `set "DOTNET_CLI_HOME=${C}\\dotnet-home"`, `set "NUGET_PACKAGES=${C}\\nuget"`,
     'set DOTNET_NOLOGO=1', 'set DOTNET_SKIP_FIRST_TIME_EXPERIENCE=1', 'set DOTNET_CLI_TELEMETRY_OPTOUT=1',
     // Build caches live on the sandbox's own disk (fast); the agent pre-fills them at boot.
     `set "GOCACHE=${C}\\go-build"`, `set "GOPATH=${C}\\gopath"`, 'set GOTELEMETRY=off', 'set GOTOOLCHAIN=local',
     // Use the local copy of Go once the agent has finished copying it.
     `set "GOEXE=${BOX}\\runtimes\\go\\bin\\go.exe"`, 'if exist C:\\pgo\\.ready set "GOEXE=C:\\pgo\\bin\\go.exe"',
-    'set PYTHONIOENCODING=utf-8', 'set PYTHONDONTWRITEBYTECODE=1'
+    `set "RUSTC=${BOX}\\runtimes\\rust\\bin\\rustc.exe"`, 'if exist C:\\prust\\.ready set "RUSTC=C:\\prust\\bin\\rustc.exe"',
+    'set PYTHONIOENCODING=utf-8', 'set PYTHONDONTWRITEBYTECODE=1',
+    `set "POLY_DATA=${BOX}\\data"`, `set "POLY_OUTPUT=${BOX}\\output"`
   ];
 }
 // Start of every run.cmd: shared setup from the agent's local copy, then the job's own folder.
@@ -305,6 +316,8 @@ class Sandbox {
     <MappedFolder><HostFolder>${xml(path.resolve(paths.runtimes))}</HostFolder><SandboxFolder>${BOX}\\runtimes</SandboxFolder><ReadOnly>true</ReadOnly></MappedFolder>
     <MappedFolder><HostFolder>${xml(this.jobsDir)}</HostFolder><SandboxFolder>${BOX}\\jobs</SandboxFolder><ReadOnly>false</ReadOnly></MappedFolder>
     <MappedFolder><HostFolder>${xml(this.cacheDir)}</HostFolder><SandboxFolder>${BOX}\\cache</SandboxFolder><ReadOnly>false</ReadOnly></MappedFolder>
+    <MappedFolder><HostFolder>${xml(paths.practiceData)}</HostFolder><SandboxFolder>${BOX}\\data</SandboxFolder><ReadOnly>true</ReadOnly></MappedFolder>
+    <MappedFolder><HostFolder>${xml(paths.practiceOutput)}</HostFolder><SandboxFolder>${BOX}\\output</SandboxFolder><ReadOnly>false</ReadOnly></MappedFolder>
   </MappedFolders>
   ${withLogon ? `<LogonCommand><Command>powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File ${BOX}\\jobs\\agent.ps1</Command></LogonCommand>` : ''}
 </Configuration>`;
@@ -462,6 +475,7 @@ class Sandbox {
     const log = `${here}out.log`;
     const lines = runHead();
     if (profile.id === 'go') v.runtime = '"%GOEXE%"';
+    if (profile.id === 'rs') v.runtime = '"%RUSTC%"';
     // C# compiles with csc directly (see csLines); other languages use their profile's run steps.
     const extraFiles = [];
     const flags = [];

@@ -86,7 +86,9 @@ class Runner {
     const env = { ...process.env, PATH: extra.concat([process.env.PATH || '']).join(sep), PYTHONIOENCODING: 'utf-8',
       DOTNET_NOLOGO: '1', DOTNET_SKIP_FIRST_TIME_EXPERIENCE: '1', DOTNET_CLI_TELEMETRY_OPTOUT: '1',
       // Don't leave .NET build servers running in the background after a C# run.
-      DOTNET_CLI_USE_MSBUILD_SERVER: '0', MSBUILDDISABLENODEREUSE: '1', UseSharedCompilation: 'false' };
+      DOTNET_CLI_USE_MSBUILD_SERVER: '0', MSBUILDDISABLENODEREUSE: '1', UseSharedCompilation: 'false',
+      // Practice folders: the same variable names Learning mode sets inside the sandbox.
+      POLY_DATA: paths.practiceData, POLY_OUTPUT: paths.practiceOutput };
     const dotnet = path.join(paths.runtimes, 'dotnet');
     if (fs.existsSync(dotnet)) { env.DOTNET_ROOT = dotnet; env.DOTNET_CLI_TELEMETRY_OPTOUT = '1'; }
     return env;

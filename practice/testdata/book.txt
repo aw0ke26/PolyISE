@@ -1,0 +1,7 @@
+The server room hummed the way it always did on Monday mornings. Dana unlocked the rack, checked the lights, and counted the switches twice. Every switch was green. Every cable was where it should be. Still, something felt wrong.
+
+She opened the log on the old laptop and scrolled. The log was long and the log was boring, and that was the point. A quiet log is a happy log. But near the bottom, the same address showed up again and again, asking for the same thing, failing the same way.
+
+Dana wrote the address on a sticky note. Then she wrote a second note that said: script this. Counting by hand was slow. Counting by hand was how you missed things. A script would count every line, every word, every address, and it would never get tired or bored.
+
+By lunch the script was done. It read the log, counted the addresses, and printed the top five. The address on the sticky note was at the top. Dana smiled, blocked it at the firewall, and went to get a sandwich. The server room kept humming.
